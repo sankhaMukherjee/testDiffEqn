@@ -1,0 +1,382 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>logs package &mdash; src  documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="modules package" href="modules.html" />
+    <link rel="prev" title="lib.testLib package" href="lib.testLib.html" /> 
+
+  
+  <script src="_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="index.html" class="icon icon-home"> src
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="lib.html">lib package</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">logs package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#submodules">Submodules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-logs.logDecorator">logs.logDecorator module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-logs">Module contents</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#configuration-information">Configuration Information</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#the-level-segment">The <code class="docutils literal notranslate"><span class="pre">&quot;level&quot;</span></code> Segment</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#the-specs-segment">The <code class="docutils literal notranslate"><span class="pre">&quot;specs&quot;</span></code> Segment</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="modules.html">modules package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="testDiffEqn.html">testDiffEqn module</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">src</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html">Docs</a> &raquo;</li>
+        
+      <li>logs package</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="_sources/logs.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="logs-package">
+<h1>logs package<a class="headerlink" href="#logs-package" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="submodules">
+<h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="module-logs.logDecorator">
+<span id="logs-logdecorator-module"></span><h2>logs.logDecorator module<a class="headerlink" href="#module-logs.logDecorator" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="logs.logDecorator.log">
+<em class="property">class </em><code class="descclassname">logs.logDecorator.</code><code class="descname">log</code><span class="sig-paren">(</span><em>base</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/logs/logDecorator.html#log"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#logs.logDecorator.log" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>decorator for logging values</p>
+<p>This decorator can be used for injecting a
+logging function into a particular function.
+This takes a function and injects a logger
+as the first argument of the decorator. For
+the generated logger, it is also going to
+insert the time at which the paticular function
+was called, and then again when the function was
+finished. These serve as convinient functions for
+inserting values into the decorator.</p>
+</dd></dl>
+
+<dl class="class">
+<dt id="logs.logDecorator.logInit">
+<em class="property">class </em><code class="descclassname">logs.logDecorator.</code><code class="descname">logInit</code><span class="sig-paren">(</span><em>base</em>, <em>level</em>, <em>specs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/logs/logDecorator.html#logInit"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#logs.logDecorator.logInit" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>initialize the decorator for logging</p>
+<p>This generates a decorator using a fresh file with the right
+date and time within the function name. This way it will be
+east to find the last log file generated using a simple script
+in the case that a person wants to generate instantaneous
+statistics for the last run.</p>
+</dd></dl>
+
+</div>
+<div class="section" id="module-logs">
+<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-logs" title="Permalink to this headline">¶</a></h2>
+<p>Module containing helper classes for logging</p>
+<p>This module contains two classes. The first one  will be used for
+generating a new logger object, and another one for uisng that logging
+object for new tasks. Each class is modeled as a decorator, that will
+inject a <code class="docutils literal notranslate"><span class="pre">logging.getLogger</span></code> instance as a first parameter of the
+function. This function furthermore logs the starting and ending times
+of the logs, as well as the time taken for the function, using the
+<code class="docutils literal notranslate"><span class="pre">time.time</span></code> module.</p>
+<div class="section" id="configuration-information">
+<h3>Configuration Information<a class="headerlink" href="#configuration-information" title="Permalink to this headline">¶</a></h3>
+<p>Configuring the logger is done with the help of the configuration file
+<code class="docutils literal notranslate"><span class="pre">config/config.json</span></code>. Specifically, the <code class="docutils literal notranslate"><span class="pre">logging</span></code> key identifies all
+configuration associated with logging information within this file. An
+example if the <code class="docutils literal notranslate"><span class="pre">logging</span></code> section is shown below. Details of the different
+sections will be described in the documentation that follows.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="s2">&quot;logging&quot;</span><span class="p">:{</span>
+
+    <span class="s2">&quot;logBase&quot;</span> <span class="p">:</span> <span class="s2">&quot;testDiffEqn&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;level&quot;</span>   <span class="p">:</span> <span class="s2">&quot;INFO&quot;</span><span class="p">,</span>
+<span class="hll">    <span class="s2">&quot;specs&quot;</span>   <span class="p">:</span> <span class="p">{</span>
+</span>
+        <span class="s2">&quot;file&quot;</span><span class="p">:{</span>
+            <span class="s2">&quot;todo&quot;</span>     <span class="p">:</span> <span class="n">true</span><span class="p">,</span>
+            <span class="s2">&quot;logFolder&quot;</span><span class="p">:</span> <span class="s2">&quot;logs&quot;</span>
+<span class="hll">        <span class="p">},</span>
+</span>
+        <span class="s2">&quot;stdout&quot;</span><span class="p">:{</span>
+            <span class="s2">&quot;todo&quot;</span>     <span class="p">:</span> <span class="n">false</span>
+<span class="hll">        <span class="p">},</span>
+</span>
+        <span class="s2">&quot;logstash&quot;</span><span class="p">:{</span>
+            <span class="s2">&quot;todo&quot;</span>     <span class="p">:</span> <span class="n">false</span><span class="p">,</span>
+            <span class="s2">&quot;version&quot;</span>  <span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+            <span class="s2">&quot;port&quot;</span>     <span class="p">:</span> <span class="mi">5959</span><span class="p">,</span>
+            <span class="s2">&quot;host&quot;</span>     <span class="p">:</span> <span class="s2">&quot;localhost&quot;</span>
+        <span class="p">}</span>
+
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<div class="section" id="the-level-segment">
+<h4>The <code class="docutils literal notranslate"><span class="pre">&quot;level&quot;</span></code> Segment<a class="headerlink" href="#the-level-segment" title="Permalink to this headline">¶</a></h4>
+<p>The logging module comes preconfigured to log at the <code class="docutils literal notranslate"><span class="pre">&quot;INFO&quot;</span></code> level.
+However this can be set to one of the following levels, and is mapped
+to their respective logging levels.</p>
+<blockquote>
+<div><ul class="simple">
+<li><code class="docutils literal notranslate"><span class="pre">'CRITICAL'</span></code> mapped to <code class="docutils literal notranslate"><span class="pre">logging.CRITICAL</span></code></li>
+<li><code class="docutils literal notranslate"><span class="pre">'ERROR'</span></code>    mapped to <code class="docutils literal notranslate"><span class="pre">logging.ERROR</span></code></li>
+<li><code class="docutils literal notranslate"><span class="pre">'WARNING'</span></code>  mapped to <code class="docutils literal notranslate"><span class="pre">logging.WARNING</span></code></li>
+<li><code class="docutils literal notranslate"><span class="pre">'INFO'</span></code>     mapped to <code class="docutils literal notranslate"><span class="pre">logging.INFO</span></code></li>
+<li><code class="docutils literal notranslate"><span class="pre">'DEBUG'</span></code>    mapped to <code class="docutils literal notranslate"><span class="pre">logging.DEBUG</span></code></li>
+</ul>
+</div></blockquote>
+</div>
+<div class="section" id="the-specs-segment">
+<h4>The <code class="docutils literal notranslate"><span class="pre">&quot;specs&quot;</span></code> Segment<a class="headerlink" href="#the-specs-segment" title="Permalink to this headline">¶</a></h4>
+<p>This module comes preconfigured for a number of logging sinks. The logs can go
+either to a logging file, to the stdout, or to logstash. Each section has a
+parameter <code class="docutils literal notranslate"><span class="pre">&quot;todo&quot;</span></code> that will determine whether a particular sink shall be
+added to the logging handler. The other parameters for each section is described
+below.</p>
+<div class="section" id="the-specs-file-segment">
+<h5>The <code class="docutils literal notranslate"><span class="pre">&quot;specs.file&quot;</span></code> Segment<a class="headerlink" href="#the-specs-file-segment" title="Permalink to this headline">¶</a></h5>
+<p>This segment is used for sending the logger output directly to a file. A base folder
+should be soecified within which the logging file should be generated. Each time the
+program is run, a new file is generated in the form <code class="docutils literal notranslate"><span class="pre">YYYY-MM-DD_hh-mm-ss.log</span></code>. The
+default formatting string used is:
+<code class="docutils literal notranslate"><span class="pre">&quot;%(asctime)s</span> <span class="pre">-</span> <span class="pre">%(name)s</span> <span class="pre">-</span> <span class="pre">%(levelname)s</span> <span class="pre">-</span> <span class="pre">%(message)s&quot;</span></code>.</p>
+</div>
+<div class="section" id="the-specs-stdout-segment">
+<h5>The <code class="docutils literal notranslate"><span class="pre">&quot;specs.stdout&quot;</span></code> Segment<a class="headerlink" href="#the-specs-stdout-segment" title="Permalink to this headline">¶</a></h5>
+<p>The output can potentially also be sent to the standard output if this section is turned
+on using the <code class="docutils literal notranslate"><span class="pre">doto</span></code> key. By default, this section is turned off. The default formatting
+string used is:
+<code class="docutils literal notranslate"><span class="pre">&quot;%(asctime)s</span> <span class="pre">-</span> <span class="pre">%(name)s</span> <span class="pre">-</span> <span class="pre">%(levelname)s</span> <span class="pre">-</span> <span class="pre">%(message)s&quot;</span></code>.</p>
+</div>
+<div class="section" id="the-specs-logstash-segment">
+<h5>The <code class="docutils literal notranslate"><span class="pre">&quot;specs.logstash&quot;</span></code> Segment<a class="headerlink" href="#the-specs-logstash-segment" title="Permalink to this headline">¶</a></h5>
+<p>It is also possible to use logstash as a sink. This is entirely JSON based. This uses TCP
+rather than the standard UDP. For configuring the logstash server, make sure to add the
+input:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">tcp</span> <span class="p">{</span>
+    <span class="s1">&#39;port&#39;</span>  <span class="o">=&gt;</span> <span class="s1">&#39;5959&#39;</span>
+    <span class="s1">&#39;codec&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;json&#39;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>The input port should match the port specified in the <code class="docutils literal notranslate"><span class="pre">config/config.json</span></code> the config file.
+If your logstash is running on a different machine, make sure that you specify the host IP
+along with the port. An example output is shown:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+ <span class="s2">&quot;@timestamp&quot;</span> <span class="o">=&gt;</span> <span class="mi">2018</span><span class="o">-</span><span class="mi">08</span><span class="o">-</span><span class="mi">12</span><span class="n">T03</span><span class="p">:</span><span class="mi">49</span><span class="p">:</span><span class="mf">25.212</span><span class="n">Z</span><span class="p">,</span>
+      <span class="s2">&quot;level&quot;</span> <span class="o">=&gt;</span> <span class="s2">&quot;ERROR&quot;</span><span class="p">,</span>
+       <span class="s2">&quot;type&quot;</span> <span class="o">=&gt;</span> <span class="s2">&quot;logstash&quot;</span><span class="p">,</span>
+       <span class="s2">&quot;port&quot;</span> <span class="o">=&gt;</span> <span class="mi">55195</span><span class="p">,</span>
+   <span class="s2">&quot;@version&quot;</span> <span class="o">=&gt;</span> <span class="s2">&quot;1&quot;</span><span class="p">,</span>
+       <span class="s2">&quot;host&quot;</span> <span class="o">=&gt;</span> <span class="s2">&quot;Sankha-desktop.local&quot;</span><span class="p">,</span>
+       <span class="s2">&quot;path&quot;</span> <span class="o">=&gt;</span> <span class="s2">&quot;/Users/user/Documents/programming/python/test/mytests/mnop/src/lib/testLib/simpleLib.py&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;message&quot;</span> <span class="o">=&gt;</span> <span class="s2">&quot;Unable to add the two values [3] and [a]:</span><span class="se">\n</span><span class="s2">unsupported operand type(s) for +: &#39;int&#39; and &#39;str&#39;&quot;</span><span class="p">,</span>
+       <span class="s2">&quot;tags&quot;</span> <span class="o">=&gt;</span> <span class="p">[],</span>
+<span class="s2">&quot;logger_name&quot;</span> <span class="o">=&gt;</span> <span class="s2">&quot;mnop.lib.simpleLib.simpleTestFunction&quot;</span><span class="p">,</span>
+ <span class="s2">&quot;stack_info&quot;</span> <span class="o">=&gt;</span> <span class="n">nil</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>This can then be sent to elasticsearch. If you need specific things filtered, you can
+directly use the filtering capabilities of logstash to generate this information.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="modules.html" class="btn btn-neutral float-right" title="modules package" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="lib.testLib.html" class="btn btn-neutral" title="lib.testLib package" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2018, Author.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'./',
+            VERSION:'',
+            LANGUAGE:'en',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="_static/jquery.js"></script>
+      <script type="text/javascript" src="_static/underscore.js"></script>
+      <script type="text/javascript" src="_static/doctools.js"></script>
+      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+  
+
+  <script type="text/javascript" src="_static/js/theme.js"></script>
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

@@ -1,0 +1,355 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>logs.logDecorator &mdash; src  documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" /> 
+
+  
+  <script src="../../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../../index.html" class="icon icon-home"> src
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../lib.html">lib package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../logs.html">logs package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../modules.html">modules package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../testDiffEqn.html">testDiffEqn module</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">src</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="../index.html">Module code</a> &raquo;</li>
+        
+      <li>logs.logDecorator</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <h1>Source code for logs.logDecorator</h1><div class="highlight"><pre>
+<span></span><span class="kn">from</span> <span class="nn">datetime</span> <span class="k">import</span> <span class="n">datetime</span> <span class="k">as</span> <span class="n">dt</span>
+<span class="kn">from</span> <span class="nn">time</span> <span class="k">import</span> <span class="n">time</span>
+<span class="kn">import</span> <span class="nn">json</span><span class="o">,</span> <span class="nn">logging</span><span class="o">,</span> <span class="nn">sys</span>
+<span class="kn">from</span> <span class="nn">functools</span> <span class="k">import</span> <span class="n">wraps</span>
+<span class="kn">import</span> <span class="nn">logstash</span>
+
+<div class="viewcode-block" id="log"><a class="viewcode-back" href="../../logs.html#logs.logDecorator.log">[docs]</a><span class="k">class</span> <span class="nc">log</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+    <span class="sd">&#39;&#39;&#39;decorator for logging values</span>
+<span class="sd">    </span>
+<span class="sd">    This decorator can be used for injecting a</span>
+<span class="sd">    logging function into a particular function. </span>
+<span class="sd">    This takes a function and injects a logger </span>
+<span class="sd">    as the first argument of the decorator. For </span>
+<span class="sd">    the generated logger, it is also going to </span>
+<span class="sd">    insert the time at which the paticular function</span>
+<span class="sd">    was called, and then again when the function was</span>
+<span class="sd">    finished. These serve as convinient functions for</span>
+<span class="sd">    inserting values into the decorator. </span>
+<span class="sd">    &#39;&#39;&#39;</span>
+
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">base</span><span class="p">):</span>
+        <span class="sd">&#39;&#39;&#39;initialize the decorator</span>
+<span class="sd">        </span>
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        base : {str}</span>
+<span class="sd">            The string used for prepending the value of the decorator</span>
+<span class="sd">            with the right path for this function. </span>
+<span class="sd">        &#39;&#39;&#39;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">base</span>   <span class="o">=</span> <span class="n">base</span>
+        <span class="k">return</span>
+
+    <span class="k">def</span> <span class="nf">__call__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">f</span><span class="p">):</span>
+
+        <span class="kn">from</span> <span class="nn">time</span> <span class="k">import</span> <span class="n">time</span>
+
+        <span class="c1"># Function to return</span>
+        <span class="nd">@wraps</span><span class="p">(</span><span class="n">f</span><span class="p">)</span>
+        <span class="k">def</span> <span class="nf">wrappedF</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+            <span class="n">logger</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">base</span><span class="p">)</span>
+            <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s1">&#39;Starting the function [</span><span class="si">{}</span><span class="s1">] ...&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">f</span><span class="o">.</span><span class="vm">__name__</span><span class="p">))</span>
+            <span class="n">t0</span>     <span class="o">=</span> <span class="n">time</span><span class="p">()</span>
+            <span class="n">result</span> <span class="o">=</span> <span class="n">f</span><span class="p">(</span><span class="n">logger</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+            <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s1">&#39;Finished the function [</span><span class="si">{}</span><span class="s1">] in </span><span class="si">{:.6e}</span><span class="s1"> seconds&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span> 
+                <span class="n">f</span><span class="o">.</span><span class="vm">__name__</span><span class="p">,</span> <span class="n">time</span><span class="p">()</span> <span class="o">-</span> <span class="n">t0</span> <span class="p">))</span>
+
+            <span class="k">return</span> <span class="n">result</span>
+
+        <span class="k">return</span> <span class="n">wrappedF</span></div>
+
+<div class="viewcode-block" id="logInit"><a class="viewcode-back" href="../../logs.html#logs.logDecorator.logInit">[docs]</a><span class="k">class</span> <span class="nc">logInit</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+    <span class="sd">&#39;&#39;&#39;initialize the decorator for logging</span>
+<span class="sd">    </span>
+<span class="sd">    This generates a decorator using a fresh file with the right</span>
+<span class="sd">    date and time within the function name. This way it will be</span>
+<span class="sd">    east to find the last log file generated using a simple script</span>
+<span class="sd">    in the case that a person wants to generate instantaneous </span>
+<span class="sd">    statistics for the last run. </span>
+<span class="sd">    &#39;&#39;&#39;</span>
+
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">base</span><span class="p">,</span> <span class="n">level</span><span class="p">,</span> <span class="n">specs</span><span class="p">):</span>
+        <span class="sd">&#39;&#39;&#39;Initialize the logger object for the program</span>
+<span class="sd">        </span>
+<span class="sd">        This logger object generates a new logger object. This is able to handle</span>
+<span class="sd">        significantly improved logging capabilities in comparison to earlier </span>
+<span class="sd">        versions of the cutter. For details of the available functionality, check</span>
+<span class="sd">        the logging documentation. </span>
+<span class="sd">        </span>
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        base : {str}</span>
+<span class="sd">            name that starts the logging functionality</span>
+<span class="sd">        level : {str}</span>
+<span class="sd">            One of the different types if logs available - ``CRITICAL``, ``ERROR``, </span>
+<span class="sd">            ``WARNING``, ``INFO`` and ``DEBUG``. These wil be mapped to one of the </span>
+<span class="sd">            correct warning levels with the logging facility. In case there is an </span>
+<span class="sd">            input that is not one shown here, it will be automatically be mapped to</span>
+<span class="sd">            ``INFO``.</span>
+<span class="sd">        specs : {dict}</span>
+<span class="sd">            Dictionary specifying the different types if formatters to be generated</span>
+<span class="sd">            while working with logs. </span>
+<span class="sd">        &#39;&#39;&#39;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">base</span>   <span class="o">=</span> <span class="n">base</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">specs</span>  <span class="o">=</span> <span class="n">specs</span>
+        <span class="n">levels</span> <span class="o">=</span> <span class="p">{</span>   
+            <span class="s1">&#39;CRITICAL&#39;</span><span class="p">:</span> <span class="n">logging</span><span class="o">.</span><span class="n">CRITICAL</span><span class="p">,</span>
+            <span class="s1">&#39;ERROR&#39;</span>   <span class="p">:</span> <span class="n">logging</span><span class="o">.</span><span class="n">ERROR</span><span class="p">,</span>
+            <span class="s1">&#39;WARNING&#39;</span> <span class="p">:</span> <span class="n">logging</span><span class="o">.</span><span class="n">WARNING</span><span class="p">,</span>
+            <span class="s1">&#39;INFO&#39;</span>    <span class="p">:</span> <span class="n">logging</span><span class="o">.</span><span class="n">INFO</span><span class="p">,</span>
+            <span class="s1">&#39;DEBUG&#39;</span>   <span class="p">:</span> <span class="n">logging</span><span class="o">.</span><span class="n">DEBUG</span><span class="p">}</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">logLevel</span> <span class="o">=</span> <span class="n">levels</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">level</span><span class="p">,</span> <span class="n">logging</span><span class="o">.</span><span class="n">INFO</span><span class="p">)</span>
+
+        <span class="k">return</span>
+
+    <span class="k">def</span> <span class="nf">__call__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">f</span><span class="p">):</span>
+
+        <span class="c1"># Function to return</span>
+        <span class="nd">@wraps</span><span class="p">(</span><span class="n">f</span><span class="p">)</span>
+        <span class="k">def</span> <span class="nf">wrappedF</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+
+            <span class="c1"># Generate a logger ...</span>
+            <span class="n">logger</span>    <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">base</span><span class="p">)</span>
+            <span class="n">formatter</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">Formatter</span><span class="p">(</span><span class="s1">&#39;</span><span class="si">%(asctime)s</span><span class="s1"> - </span><span class="si">%(name)s</span><span class="s1"> - </span><span class="si">%(levelname)s</span><span class="s1"> - </span><span class="si">%(message)s</span><span class="s1">&#39;</span><span class="p">)</span>
+            <span class="n">now</span>       <span class="o">=</span> <span class="n">dt</span><span class="o">.</span><span class="n">now</span><span class="p">()</span><span class="o">.</span><span class="n">strftime</span><span class="p">(</span><span class="s1">&#39;%Y-%m-</span><span class="si">%d</span><span class="s1">_%H-%M-%S&#39;</span><span class="p">)</span>
+
+            <span class="c1"># Generate a file handler if necessary</span>
+            <span class="k">if</span> <span class="p">(</span><span class="s1">&#39;file&#39;</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">specs</span><span class="p">)</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">specs</span><span class="p">[</span><span class="s1">&#39;file&#39;</span><span class="p">][</span><span class="s1">&#39;todo&#39;</span><span class="p">]:</span>
+                <span class="n">fH</span>  <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">FileHandler</span><span class="p">(</span> <span class="s1">&#39;</span><span class="si">{}</span><span class="s1">/</span><span class="si">{}</span><span class="s1">.log&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">specs</span><span class="p">[</span><span class="s1">&#39;file&#39;</span><span class="p">][</span><span class="s1">&#39;logFolder&#39;</span><span class="p">],</span> <span class="n">now</span><span class="p">)</span> <span class="p">)</span>
+                
+                <span class="n">fH</span><span class="o">.</span><span class="n">setFormatter</span><span class="p">(</span><span class="n">formatter</span><span class="p">)</span>
+                <span class="n">logger</span><span class="o">.</span><span class="n">addHandler</span><span class="p">(</span><span class="n">fH</span><span class="p">)</span>
+
+            <span class="c1"># Generate a file handler if necessary</span>
+            <span class="k">if</span> <span class="p">(</span><span class="s1">&#39;stdout&#39;</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">specs</span><span class="p">)</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">specs</span><span class="p">[</span><span class="s1">&#39;stdout&#39;</span><span class="p">][</span><span class="s1">&#39;todo&#39;</span><span class="p">]:</span>
+                <span class="n">cH</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">StreamHandler</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">stdout</span><span class="p">)</span>
+                <span class="n">cH</span><span class="o">.</span><span class="n">setFormatter</span><span class="p">(</span><span class="n">formatter</span><span class="p">)</span>
+                <span class="n">logger</span><span class="o">.</span><span class="n">addHandler</span><span class="p">(</span><span class="n">cH</span><span class="p">)</span>
+
+            <span class="c1"># Generate a file handler if necessary</span>
+            <span class="k">if</span> <span class="p">(</span><span class="s1">&#39;logstash&#39;</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">specs</span><span class="p">)</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">specs</span><span class="p">[</span><span class="s1">&#39;logstash&#39;</span><span class="p">][</span><span class="s1">&#39;todo&#39;</span><span class="p">]:</span>
+
+                <span class="n">tags</span> <span class="o">=</span> <span class="p">[</span> <span class="s1">&#39;testDiffEqn&#39;</span> <span class="p">,</span> <span class="n">now</span><span class="p">]</span>
+
+                <span class="k">if</span> <span class="s1">&#39;tags&#39;</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">specs</span><span class="p">[</span><span class="s1">&#39;logstash&#39;</span><span class="p">]:</span>
+                    <span class="n">tags</span> <span class="o">+=</span> <span class="bp">self</span><span class="o">.</span><span class="n">specs</span><span class="p">[</span><span class="s1">&#39;logstash&#39;</span><span class="p">][</span><span class="s1">&#39;tags&#39;</span><span class="p">]</span>
+                
+
+                <span class="n">lH</span> <span class="o">=</span> <span class="n">logstash</span><span class="o">.</span><span class="n">TCPLogstashHandler</span><span class="p">(</span>
+                    <span class="n">host</span>    <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">specs</span><span class="p">[</span><span class="s1">&#39;logstash&#39;</span><span class="p">][</span><span class="s1">&#39;host&#39;</span><span class="p">],</span> 
+                    <span class="n">port</span>    <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">specs</span><span class="p">[</span><span class="s1">&#39;logstash&#39;</span><span class="p">][</span><span class="s1">&#39;port&#39;</span><span class="p">],</span> 
+                    <span class="n">version</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">specs</span><span class="p">[</span><span class="s1">&#39;logstash&#39;</span><span class="p">][</span><span class="s1">&#39;version&#39;</span><span class="p">],</span>
+                    <span class="n">tags</span>    <span class="o">=</span> <span class="n">tags</span><span class="p">)</span>
+                
+                <span class="n">logger</span><span class="o">.</span><span class="n">addHandler</span><span class="p">(</span><span class="n">lH</span><span class="p">)</span>
+
+            <span class="c1"># set the level of the handler</span>
+            <span class="n">logger</span><span class="o">.</span><span class="n">setLevel</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">logLevel</span><span class="p">)</span>
+
+            <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s1">&#39;Starting the main program ...&#39;</span><span class="p">)</span>
+            <span class="n">t0</span>     <span class="o">=</span> <span class="n">time</span><span class="p">()</span>
+            <span class="n">result</span> <span class="o">=</span> <span class="n">f</span><span class="p">(</span><span class="n">logger</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+            <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s1">&#39;Finished the main program in </span><span class="si">{:.6e}</span><span class="s1"> seconds&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span> <span class="n">time</span><span class="p">()</span> <span class="o">-</span> <span class="n">t0</span> <span class="p">))</span>
+
+            <span class="k">return</span> <span class="n">result</span>
+
+        <span class="k">return</span> <span class="n">wrappedF</span></div>
+        
+</pre></div>
+
+           </div>
+           
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2018, Author.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../../',
+            VERSION:'',
+            LANGUAGE:'en',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="../../_static/jquery.js"></script>
+      <script type="text/javascript" src="../../_static/underscore.js"></script>
+      <script type="text/javascript" src="../../_static/doctools.js"></script>
+      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+  
+
+  <script type="text/javascript" src="../../_static/js/theme.js"></script>
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
