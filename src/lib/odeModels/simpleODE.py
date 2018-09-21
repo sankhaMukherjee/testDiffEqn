@@ -28,4 +28,5 @@ class simpleODE:
         return
 
 
+    @staticmethod
     def dy():
