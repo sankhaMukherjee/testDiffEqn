@@ -1,0 +1,27 @@
+{
+    "logging":{
+        
+        "logBase" : "testDiffEqn",
+        "level"   : "INFO",
+        "specs"   : {
+
+            "file":{
+                "todo"     : true,
+                "logFolder": "logs" 
+            },
+
+            "stdout":{
+                "todo"     : false 
+            },
+
+            "logstash":{
+                "todo"     : false,
+                "version"  : 1,
+                "port"     : 5959,
+                "host"     : "localhost",
+                "tags"     : []
+            }
+
+        }
+    }
+}

@@ -1,0 +1,6 @@
+{
+    "<dbName>":{
+        "connection" : 
+            "host='<HOST>' user='<USER>' dbname='<DATABASE>' password='<PASSWORD>'"
+    }
+}

@@ -1,0 +1,9 @@
+[
+    {
+        "moduleName" : "module1",
+        "path"       : "modules/module1/module1.py",
+        "execute"    : true ,
+        "description": "",
+        "owner"      : ""
+    }
+]

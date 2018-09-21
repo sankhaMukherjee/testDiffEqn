@@ -1,0 +1,27 @@
+
+# Ignore the mac-specific files in all folders
+.DS_Store
+._.DS_Store
+**/.DS_Store
+**/._.DS_Store
+
+# No environment stuff 
+env/
+
+# Dont save any catached files
+**/__pycache__/
+
+# Cached files from Sublime Text
+._*
+**/._*
+
+# Dont save passwords, server locations etc.
+config/db.json
+
+# All the logs are to be ignored
+# Remember to keep the decorators
+src/logs/*.log
+
+# Dont save results or data (might be a lot of stuff)
+results/*
+data/*
