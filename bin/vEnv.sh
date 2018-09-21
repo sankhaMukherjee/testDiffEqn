@@ -45,7 +45,7 @@ else
 
     # ML libraries
     pip3 install sklearn
-    pip3 install --upgrade ../../installers/tensorflowGPU/tensorflowGPU/tensorflow-1.10.0-cp36-cp36m-linux_x86_64.whl
+    pip3 install --upgrade ../../installers/tensorflowGPU/tensorflow-1.10.0-cp36-cp36m-linux_x86_64.whl
 
     # Charting libraries
     pip3 install matplotlib

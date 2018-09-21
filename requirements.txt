@@ -1,4 +1,6 @@
+absl-py==0.5.0
 alabaster==0.7.11
+astor==0.7.1
 atomicwrites==1.2.1
 attrs==18.2.0
 Babel==2.6.0
@@ -9,13 +11,20 @@ coverage==4.5.1
 cycler==0.10.0
 decorator==4.3.0
 docutils==0.14
+gast==0.2.0
+grpcio==1.15.0
+h5py==2.8.0
 idna==2.7
 imagesize==1.1.0
 ipython==6.5.0
 ipython-genutils==0.2.0
 jedi==0.12.1
 Jinja2==2.10
+Keras==2.2.2
+Keras-Applications==1.0.5
+Keras-Preprocessing==1.0.3
 kiwisolver==1.0.1
+Markdown==2.6.11
 MarkupSafe==1.0
 matplotlib==3.0.0
 more-itertools==4.3.0
@@ -27,6 +36,7 @@ pexpect==4.6.0
 pickleshare==0.7.4
 pluggy==0.7.1
 prompt-toolkit==1.0.15
+protobuf==3.6.1
 ptyprocess==0.6.0
 py==1.6.0
 Pygments==2.2.0
@@ -36,6 +46,7 @@ pytest-cov==2.6.0
 python-dateutil==2.7.3
 python-logstash==0.4.6
 pytz==2018.5
+PyYAML==3.13
 requests==2.19.1
 scikit-learn==0.19.2
 scipy==1.1.0
@@ -46,7 +57,11 @@ snowballstemmer==1.2.1
 Sphinx==1.8.0
 sphinx-rtd-theme==0.4.1
 sphinxcontrib-websupport==1.1.0
+tensorboard==1.10.0
+tensorflow==1.10.0
+termcolor==1.1.0
 tqdm==4.26.0
 traitlets==4.3.2
 urllib3==1.23
 wcwidth==0.1.7
+Werkzeug==0.14.1
