@@ -2,6 +2,7 @@ from logs import logDecorator as lD
 from lib.odeModels import simpleODE as sOde
 import json
 import numpy as np
+from time import time
 
 
 config = json.load(open('../config/config.json'))
@@ -44,21 +45,33 @@ def doSomething(logger):
 
     model = sOde.simpleODE(Nnt, Nl, Atimesj, Btimesj, fj, rj, mj, stress_t, stress_v)
 
-    y0    = np.array([1,1,1,2,2,2])
-    NNwts = [ np.random.rand(12,  4), 
-              np.random.rand( 3, 12),
-              np.random.rand( 1,  3) ]
-    NNb   = [ 0, 1, -1 ]
-    NNact = [ np.tanh, np.tanh, np.tanh ]
-    Taus  = [1, 4, 12]
+    allTimes = []
+    for i in range(10):
+        y0    = np.array([1,1,1,2,2,2])
+        NNwts = [ np.random.rand(12,  4), 
+                  np.random.rand( 3, 12),
+                  np.random.rand( 1,  3) ]
+        NNb   = [ 0, 1, -1 ]
+        NNact = [ np.tanh, np.tanh, np.tanh ]
+        Taus  = [1, 4, 12]
 
-    args = (NNwts, NNb, NNact, Taus)
+        args = (NNwts, NNb, NNact, Taus)
 
 
-    tNew = np.linspace(5, 75, 100)
-    result, specs =  model.solveY( y0, tNew, args )
+        tNew = np.linspace(5, 75, 100)
+        startTime = time()
+        result, specs =  model.solveY( y0, tNew, args, full_output=True )
+        tDelta = time() - startTime
 
-    
+        allTimes.append( tDelta )
+        print('# steps {:6d}, fn eval {:6d}, jac eval {:6d} --> '.format(
+            specs['nst'][-1], specs['nfe'][-1], specs['nje'][-1]), end = '')
+        print(tDelta)
+
+    allTimes = np.array(allTimes)
+    print('Mean = {}'.format( allTimes.mean() ))
+    print('Std  = {}'.format( allTimes.std() ))
+
     return
 
 @lD.log(logBase + '.main')
