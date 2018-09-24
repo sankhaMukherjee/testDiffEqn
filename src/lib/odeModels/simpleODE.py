@@ -106,12 +106,15 @@ class simpleODE:
         Current Assumptions:
 
         1. At the moment, we assume that a single NN will suffice for the 
-           entire model. This will not always be the case. 
+           entire model. This will not always be the case. However, we shall
+           calculate this at every iteration of the latent space to compute
+           the cost having a number of neural network layers
 
         2. There is only 1 vector for stress that will represent the stressors.
            This can easily be changed to a list of stressors. Medications can
            also be inserted in the same manner later. 
            We might also be interested in smoothing eevrything later.
+
 
         
         Parameters
@@ -139,9 +142,9 @@ class simpleODE:
 
         try:
             # Calculate the neurotransmitters
-            for j in len(self.Nnt):
-                Aj = self.AjFunc(t, self.Atimesj[j])
-                Bj = self.BjFunc(t, self.Btimesj[j])
+            for j in range(self.Nnt):
+                Aj = self.AjFunc(t, self.Atimesj)
+                Bj = self.BjFunc(t, self.Btimesj)
 
                 v  = self.fj[j]
                 v -= self.rj[j]*y[j]/( 1 + Aj )
@@ -149,15 +152,16 @@ class simpleODE:
 
                 result[j] = v
 
-                
             # Calculate long-term dependencies
-            res = np.hstack((y[ : self.Nnt], np.array([self.stress(t)]) ))
-            for j in len(self.Nl):
+            for j in range(self.Nl):
+                res = np.hstack((y[ : self.Nnt], np.array([self.stress(t)]) ))
+                res = res.reshape((-1, 1))
+                
                 for w, b, a in zip(NNwts, NNb, NNact):
-                    res = np.matmul(w, res) + b
+                    res = np.matmul(w, res) #+ b
                     res = a(res)
 
-                result[j+self.Nnt] = res
+                result[j+self.Nnt] = res[0][0] - y[j+self.Nnt]/Taus[j]
 
         except Exception as e:
             print('Unable to calculate the dy properly: {}'.format(e))
