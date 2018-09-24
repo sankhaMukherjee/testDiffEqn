@@ -2,6 +2,12 @@
     {
         "moduleName" : "module1",
         "path"       : "modules/module1/module1.py",
+        "execute"    : false ,
+        "description": "",
+        "owner"      : ""
+    },{
+        "moduleName" : "odeSimple",
+        "path"       : "modules/odeSimple/odeSimple.py",
         "execute"    : true ,
         "description": "",
         "owner"      : ""
