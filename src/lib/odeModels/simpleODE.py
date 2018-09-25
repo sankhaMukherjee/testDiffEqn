@@ -99,7 +99,40 @@ class simpleODE:
 
         return val
 
-    def dy(self, y, t, NNwts, NNb, NNact, Taus):
+    def jac(self, y, t, NNwts, NNb, NNact, NNactD, Taus):
+        result = np.zeros((self.Nnt, self.Nnt))
+
+        Aj = self.AjFunc(t, self.Atimesj)
+        Bj = self.BjFunc(t, self.Btimesj)
+
+        for i in range(self.Nnt):
+            
+            ntArr    = np.zaros( self.Nnt + 1 ) # 1 stressor added
+            ntArr[i] = 1
+
+            res = (ntArr * 1).reshape((-1, 1))
+            for j in range(self.Nl):
+
+                # Find the divergence ...
+                for w, b, a in zip(NNwts, NNb, NNactD):
+                    res = np.matmul(w, res) #+ b
+                    res = a(res)
+
+                # final value
+                res = res[0][0]
+
+                result[i , j+self.Nnt] = res
+
+        for i in range(self.Nnt):
+            result[i, i] -= self.rj[i]/( 1 + Aj ) 
+            result[i, i] -= self.mj[i]/( 1 + Bj ) 
+
+        for i in range(self.Nl):
+            result[i+self.Nnt, i+self.Nnt] = -1/Taus[i]
+
+        return result
+
+    def dy(self, y, t, NNwts, NNb, NNact, NNactD, Taus):
         '''[summary]
         
 
@@ -154,9 +187,10 @@ class simpleODE:
 
             # Calculate long-term dependencies
             for j in range(self.Nl):
+
+                # This is the NN([ n1, n2, n3, s ])
                 res = np.hstack((y[ : self.Nnt], np.array([self.stress(t)]) ))
                 res = res.reshape((-1, 1))
-                
                 for w, b, a in zip(NNwts, NNb, NNact):
                     res = np.matmul(w, res) #+ b
                     res = a(res)
