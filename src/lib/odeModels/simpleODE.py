@@ -5,6 +5,8 @@ from scipy.interpolate import interp1d
 from scipy.integrate import odeint
 import numpy as np
 
+from numba import jit
+
 config = json.load(open('../config/config.json'))
 logBase = config['logging']['logBase'] + '.lib.odeModels.simpleODE'
 
@@ -99,20 +101,25 @@ class simpleODE:
 
         return val
 
+    @jit
     def jac(self, y, t, NNwts, NNb, NNact, NNactD, Taus):
-        result = np.zeros((self.Nnt, self.Nnt))
+
+        # print('.', end='')
+
+        result = np.zeros((self.Nnt+self.Nnt, self.Nnt+self.Nnt))
 
         Aj = self.AjFunc(t, self.Atimesj)
         Bj = self.BjFunc(t, self.Btimesj)
 
+
         for i in range(self.Nnt):
             
-            ntArr    = np.zaros( self.Nnt + 1 ) # 1 stressor added
+            ntArr    = np.zeros( self.Nnt + 1 ) # 1 stressor added
             ntArr[i] = 1
 
-            res = (ntArr * 1).reshape((-1, 1))
             for j in range(self.Nl):
 
+                res = (ntArr * 1).reshape((-1, 1))
                 # Find the divergence ...
                 for w, b, a in zip(NNwts, NNb, NNactD):
                     res = np.matmul(w, res) #+ b
@@ -204,11 +211,18 @@ class simpleODE:
 
     def solveY(self, y0, t, args, useJac=False, full_output=False):
 
+        jac = None
+        if useJac:
+            jac = self.jac
+
         result_dict = {}
         if full_output:
-            y_t, result_dict = odeint(self.dy, y0, t, args=args, full_output=True)
+            y_t, result_dict = odeint(self.dy, y0, t, args=args, Dfun=jac, full_output=True)
         else:
-            y_t = odeint(self.dy, y0, t, args=args, full_output=False)
+            y_t = odeint(self.dy, y0, t, args=args, Dfun=jac, full_output=False)
+
+        # if useJac:
+        #     print('')
 
         return y_t, result_dict
 
