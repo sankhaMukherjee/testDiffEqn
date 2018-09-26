@@ -17,6 +17,85 @@ logBase = config['logging']['logBase'] + '.modules.odeSimple.odeSimple'
 def dTanh(x):
     return 1-(np.tanh(x))**2
 
+
+def one(x):
+    return x
+
+def sqr(x):
+    return x**2
+
+def Dsqr(x):
+    return x*2
+
+def compareJac():
+
+    np.set_printoptions(precision=1)
+
+    t = np.linspace(0, 100, 101)
+
+    # ---------------------------------------------------------
+    # These can be specific to a person or to the simulation
+    # as a whole ... 
+    # ---------------------------------------------------------
+    Nnt      = 3
+    Nl       = 3
+    Atimesj  = [(  5, 15, 3    ),
+                ( 35, 50, 12.5 ),
+                ( 75, 80, 7.6  ),]
+    Btimesj  = [(  5, 15, 3    ),
+                ( 35, 50, 12.5 ),
+                ( 75, 80, 7.6  ),]
+    fj       = [2   ,2   ,2    ]
+    rj       = [0.5 ,0.5 ,0.5  ]
+    mj       = [0.5 ,0.5 ,0.5  ]
+    stress_t = t.copy()
+    stress_v = np.random.rand(len(t))
+    stress_v = np.zeros(len(t))
+
+
+    model = sOde.simpleODE(Nnt, Nl, Atimesj, Btimesj, fj, rj, mj, stress_t, stress_v)
+    y0    = np.array([1.0,1,1,2,2,2])
+    NNwts = [ np.random.rand(12,  4), 
+              np.random.rand( 3, 12),
+              np.random.rand( 1,  3) ]
+    NNb    = [ 0, 1, -1 ]
+
+    NNact  = [ np.tanh, np.tanh, np.tanh ]
+    NNactD = [ dTanh,   dTanh,   dTanh ] # Differentiation of tanh
+
+    # NNact  = [ one, one, sqr ]
+    # NNactD = [ one, one, Dsqr ] # Differentiation of tanh
+
+
+    Taus   = [1, 4, 12]
+
+    i  = 0
+    delY0 = 1e-10
+
+
+    dy  = model.dy(y0, 0, NNwts, NNb, NNact, NNactD, Taus)
+    jac = model.jac(y0, 0, NNwts, NNb, NNact, NNactD, Taus)
+
+    jacFD = []
+    for i in range(len(y0)):
+        y1    = y0.copy()
+        y1[i] = y1[i] + delY0
+
+        dy1 = model.dy(y1, 0, NNwts, NNb, NNact, NNactD, Taus)
+
+        jacFD.append((dy1 - dy)/delY0)
+
+    jacFD = np.array(jacFD)
+    print('------------[Finite difference]------------')
+    print(jacFD)
+    print('------------[Calculated]------------')
+    print(jac)
+    print('------------[Ratio]------------')
+    print(jac/jacFD)
+
+
+    return
+
 @lD.log(logBase + '.doSomething')
 def doSomething(logger, plotData=False):
     '''print a line
@@ -127,7 +206,8 @@ def main(logger):
         The logger function
     '''
 
-    doSomething(plotData=False)
+    # doSomething(plotData=False)
+    compareJac()
 
     return
 

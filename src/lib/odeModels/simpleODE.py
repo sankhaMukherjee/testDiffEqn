@@ -101,7 +101,7 @@ class simpleODE:
 
         return val
 
-    @jit
+    # @jit
     def jac(self, y, t, NNwts, NNb, NNact, NNactD, Taus):
 
         # print('.', end='')
@@ -119,16 +119,26 @@ class simpleODE:
 
             for j in range(self.Nl):
 
-                res = (ntArr * 1).reshape((-1, 1))
+                dRes = (ntArr * 1).reshape((-1, 1))
+
+                # res = np.hstack((y[ : self.Nnt], np.array([self.stress(t)]) ))
+                res    = (ntArr * 1).reshape((-1, 1))
+                res[i] = y[i]
+                res = res.reshape((-1, 1))
+
+
                 # Find the divergence ...
-                for w, b, a in zip(NNwts, NNb, NNactD):
+                for w, b, a, da in zip(NNwts, NNb, NNact, NNactD):
+
+                    dRes = np.matmul(w, dRes)
                     res = np.matmul(w, res) #+ b
+                    dRes *= da(res)
                     res = a(res)
-
+                    
                 # final value
-                res = res[0][0]
+                dRes = dRes[0][0]
 
-                result[i , j+self.Nnt] = res
+                result[i , j+self.Nnt] = dRes
 
         for i in range(self.Nnt):
             result[i, i] -= self.rj[i]/( 1 + Aj ) 
@@ -198,6 +208,7 @@ class simpleODE:
                 # This is the NN([ n1, n2, n3, s ])
                 res = np.hstack((y[ : self.Nnt], np.array([self.stress(t)]) ))
                 res = res.reshape((-1, 1))
+
                 for w, b, a in zip(NNwts, NNb, NNact):
                     res = np.matmul(w, res) #+ b
                     res = a(res)
