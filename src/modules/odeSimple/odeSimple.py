@@ -17,7 +17,6 @@ logBase = config['logging']['logBase'] + '.modules.odeSimple.odeSimple'
 def dTanh(x):
     return 1-(np.tanh(x))**2
 
-
 def one(x):
     return x
 
@@ -137,7 +136,7 @@ def doSomething(logger, plotData=False):
 
     allTimes    = []
     allTimesJac = []
-    for i in range(10):
+    for i in range(2):
         y0    = np.array([1,1,1,2,2,2])
         NNwts = [ np.random.rand(12,  4), 
                   np.random.rand( 3, 12),

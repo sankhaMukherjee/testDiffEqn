@@ -8,6 +8,12 @@
     },{
         "moduleName" : "odeSimple",
         "path"       : "modules/odeSimple/odeSimple.py",
+        "execute"    : false ,
+        "description": "",
+        "owner"      : ""
+    },{
+        "moduleName" : "odeMultiPatient",
+        "path"       : "modules/odeMultiPatient/odeMultiPatient.py",
         "execute"    : true ,
         "description": "",
         "owner"      : ""
