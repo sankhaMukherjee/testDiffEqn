@@ -105,12 +105,10 @@ class simpleODE:
     def jac(self, y, t, NNwts, NNb, NNact, NNactD, Taus):
 
         # print('.', end='')
-
         result = np.zeros((self.Nnt+self.Nnt, self.Nnt+self.Nnt))
 
         Aj = self.AjFunc(t, self.Atimesj)
         Bj = self.BjFunc(t, self.Btimesj)
-
 
         for i in range(self.Nnt):
             
@@ -119,26 +117,25 @@ class simpleODE:
 
             for j in range(self.Nl):
 
-                dRes = (ntArr * 1).reshape((-1, 1))
-
-                # res = np.hstack((y[ : self.Nnt], np.array([self.stress(t)]) ))
-                res    = (ntArr * 1).reshape((-1, 1))
-                res[i] = y[i]
+                resD = (ntArr * 1).reshape((-1, 1))
+                res = np.hstack((y[ : self.Nnt], np.array([self.stress(t)]) ))
                 res = res.reshape((-1, 1))
-
 
                 # Find the divergence ...
                 for w, b, a, da in zip(NNwts, NNb, NNact, NNactD):
 
-                    dRes = np.matmul(w, dRes)
                     res = np.matmul(w, res) #+ b
-                    dRes *= da(res)
+
+                    resD = np.matmul(w, resD) #+ b
+                    resD = resD * da( res ) 
+
                     res = a(res)
                     
-                # final value
-                dRes = dRes[0][0]
 
-                result[i , j+self.Nnt] = dRes
+                # final value
+                resD = resD[0][0]
+
+                result[i , j+self.Nnt] = resD
 
         for i in range(self.Nnt):
             result[i, i] -= self.rj[i]/( 1 + Aj ) 

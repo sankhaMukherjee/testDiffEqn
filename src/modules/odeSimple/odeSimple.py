@@ -206,7 +206,7 @@ def main(logger):
         The logger function
     '''
 
-    # doSomething(plotData=False)
+    doSomething(plotData=False)
     compareJac()
 
     return
