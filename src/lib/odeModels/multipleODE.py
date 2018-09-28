@@ -32,15 +32,17 @@ class multipleODE:
             [description]
         '''
 
-        self.Npat    = Npat
-        self.Nnt     = Nnt
-        self.Nl      = Nl
-        self.Atimesj = Atimesj # user specific
-        self.Btimesj = Btimesj # user specific
-        self.fj      = fj      # user specific
-        self.rj      = rj      # user specific
-        self.mj      = mj      # user specific
-        self.stress  = interp1d(stress_t, stress_v) # user specific
+        self.Npat    = Npat  # --> 1 number 
+        self.Nnt     = Nnt   # --> 1 number
+        self.Nl      = Nl    # --> 1 number
+        self.Atimesj = Atimesj # --> Npat arrays
+        self.Btimesj = Btimesj # --> Npat arrays
+        self.fj      = fj      # --> Npat arrays
+        self.rj      = rj      # --> Npat arrays
+        self.mj      = mj      # --> Npat arrays
+        self.stress  = []      # --> Npat functions
+        for s_t, s_v in zip(stress_t, stress_v):
+            self.stress.append( interp1d(s_t, s_v) )
 
         return
 
@@ -104,6 +106,32 @@ class multipleODE:
 
     # @jit
     def jac(self, y, t, NNwts, NNb, NNact, NNactD, Taus):
+        '''[summary]
+        
+        This has not been implemented yet
+        
+        Parameters
+        ----------
+        y : {[type]}
+            [description]
+        t : {[type]}
+            [description]
+        NNwts : {[type]}
+            [description]
+        NNb : {[type]}
+            [description]
+        NNact : {[type]}
+            [description]
+        NNactD : {[type]}
+            [description]
+        Taus : {[type]}
+            [description]
+        
+        Returns
+        -------
+        [type]
+            [description]
+        '''
 
         # print('.', end='')
         result = np.zeros((self.Nnt+self.Nnt, self.Nnt+self.Nnt))
@@ -186,32 +214,41 @@ class multipleODE:
             [description]
         '''
        
-        result = np.zeros(self.Nnt + self.Nl)
+        NperUser = self.Nnt + self.Nl
+        result   = np.zeros( NperUser * self.Npat )
 
         try:
-            # Calculate the neurotransmitters
-            for j in range(self.Nnt):
-                Aj = self.AjFunc(t, self.Atimesj)
-                Bj = self.BjFunc(t, self.Btimesj)
 
-                v  = self.fj[j]
-                v -= self.rj[j]*y[j]/( 1 + Aj )
-                v -= self.mj[j]*y[j]/( 1 + Bj )
+            # Add this per user
+            for user in range(self.Npat):
+                
+                # Calculate the neurotransmitters
+                for j in range(self.Nnt):
 
-                result[j] = v
+                    Aj = self.AjFunc(t, self.Atimesj[user])
+                    Bj = self.BjFunc(t, self.Btimesj[user])
 
-            # Calculate long-term dependencies
-            for j in range(self.Nl):
+                    v  = self.fj[user][j]
+                    v -= self.rj[user][j]*y[user*NperUser + j]/( 1 + Aj )
+                    v -= self.mj[user][j]*y[user*NperUser + j]/( 1 + Bj )
 
-                # This is the NN([ n1, n2, n3, s ])
-                res = np.hstack((y[ : self.Nnt], np.array([self.stress(t)]) ))
-                res = res.reshape((-1, 1))
+                    result[ user*NperUser + j] = v
 
-                for w, b, a in zip(NNwts, NNb, NNact):
-                    res = np.matmul(w, res) #+ b
-                    res = a(res)
+                # Calculate long-term dependencies
+                for j in range(self.Nl):
 
-                result[j+self.Nnt] = res[0][0] - y[j+self.Nnt]/Taus[j]
+                    # This is the NN([ n1, n2, n3, s ])
+                    res = np.hstack(( 
+                        y[ user*NperUser: user*NperUser+self.Nnt], 
+                        np.array([self.stress[user](t)]) 
+                        ))
+                    res = res.reshape((-1, 1))
+
+                    for w, b, a in zip(NNwts, NNb, NNact):
+                        res = np.matmul(w, res) #+ b
+                        res = a(res)
+
+                    result[user*NperUser+self.Nnt+j] = res[0][0] - y[user*NperUser+self.Nnt+j]/Taus[j]
 
         except Exception as e:
             print('Unable to calculate the dy properly: {}'.format(e))
