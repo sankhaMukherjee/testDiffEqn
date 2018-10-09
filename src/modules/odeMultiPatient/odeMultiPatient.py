@@ -110,7 +110,9 @@ def solveODE(logger, N, numSim, plotData=False):
         [description]
     '''
 
-    print('We are in odeMultiPatient')
+    print('-'*30)
+    print('We are in odeMultiPatient: {}'.format(N))
+    print('-'*30)
     now = dt.now().strftime('%Y-%m-%d--%H-%M-%S')
     Npat = N
     t = np.linspace(0, 100, 101)
@@ -239,7 +241,6 @@ def main(logger):
 
 
     numList = [1, 5, 10, 20, 50, 100]
-    numList = [1, 2]
     results = [solveODE(N, 10, plotData=False) for N in numList]
     now = dt.now().strftime('%Y-%m-%d--%H-%M-%S')
 
