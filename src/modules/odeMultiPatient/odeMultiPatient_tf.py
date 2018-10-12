@@ -1,5 +1,5 @@
 from logs import logDecorator as lD 
-from lib.odeModels import multipleODE as mOde
+from lib.odeModels import multipleODE_tf as mOde
 import json
 import numpy as np
 from time import time
@@ -7,12 +7,11 @@ from datetime import datetime as dt
 import matplotlib.pyplot as plt
 
 from scipy import signal
-
-
+import tensorflow as tf
 
 
 config = json.load(open('../config/config.json'))
-logBase = config['logging']['logBase'] + '.modules.odeMultiPatient.odeMultiPatient'
+logBase = config['logging']['logBase'] + '.modules.odeMultiPatient.odeMultiPatient_tf'
 
 def dTanh(x):
     return 1-(np.tanh(x))**2
@@ -113,9 +112,9 @@ def solveODE(logger, N, numSim, plotData=False):
     print('-'*30)
     print('We are in odeMultiPatient: {}'.format(N))
     print('-'*30)
-    now = dt.now().strftime('%Y-%m-%d--%H-%M-%S')
-    Npat = N
-    t = np.linspace(0, 100, 101)
+    now      = dt.now().strftime('%Y-%m-%d--%H-%M-%S')
+    Npat     = N
+    tspan    = np.linspace(0, 100, 101)
 
     # ---------------------------------------------------------
     # These can be specific to a person or to the simulation
@@ -135,47 +134,51 @@ def solveODE(logger, N, numSim, plotData=False):
 
     for i in range(Npat):
         
+        tmp_doseA, tmp_doseB   = np.zeros(shape=tspan.shape), np.zeros(shape=tspan.shape)
+        
+        for trange, dose in [ ([  5, 15],    3 ),
+                              ([ 35, 50],   35 ),
+                              ([ 50, 60],    3 ),
+                              ([ 60, 75],  300 ),
+                              ([ 75, 80],  7.6 ) ]:
+            twindow            = range(trange[0], trange[1] + 1)
+            tmp_doseA[twindow] = dose
 
-        Atimesj.append(    [(  5, 15,    3 ),
-                            ( 35, 50,   35 ),
-                            ( 50, 60,    3 ),
-                            ( 60, 75,  300 ),
-                            ( 75, 80,  7.6 ),]
-                        )
+        for trange, dose in [ ([  5, 15], 70   ),
+                              ([ 35, 50], 12.5 ),
+                              ([ 75, 80], 7.6  ) ]:
+            twindow            = range(trange[0], trange[1] + 1)
+            tmp_doseB[twindow] = dose   
 
-        Btimesj.append(    [(  5, 15, 70    ),
-                            ( 35, 50, 12.5  ),
-                            ( 75, 80, 7.6   ),]
-                        )
-
-
-        fj.append(np.array([12   ,7   ,15    ]))
+        Atimesj.append(tmp_doseA)
+        Btimesj.append(tmp_doseB)
+        fj.append(np.array([12   ,7   ,15 ]))
         rj.append(np.array([6    ,3   ,8  ]))
-        mj.append(np.array([10 ,17 ,2  ]))
-        stress_t.append(t.copy())
-        stress_v.append( signal.square(2 * np.pi * t / 20.0)*50)
+        mj.append(np.array([10   ,17  ,2  ]))
+        stress_t.append( tspan.copy() )
+        stress_v.append( signal.square(2 * np.pi * tspan / 20.0) * 50)
 
 
-    model = mOde.multipleODE(Npat, Nnt, Nl, Atimesj, Btimesj, fj, rj, mj, stress_t, stress_v)
+    model = mOde.multipleODE(Npat, Nnt, Nl, tspan, Atimesj, Btimesj, fj, rj, mj, stress_t, stress_v)
 
     allTimes    = []
     allTimesJac = []
 
     for i in range(numSim):
 
-        y0    = np.hstack([np.array([1,1,1,2,2,2]) for j in range(Npat)])
+        y0     = np.hstack([np.array([1,1,1,2,2,2]) for j in range(Npat)])
 
-        NNwts = [ np.random.rand(12,  4), 
-                  np.random.rand( 3, 12),
-                  np.random.rand( 1,  3) ]
+        NNwts  = [ np.random.random(size=(4, 12)), 
+                   np.random.random(size=(12, 3)), 
+                   np.random.random(size=(3, 1))
+                   ]
         NNb    = [ 0, 1, -1 ]
-        NNact  = [ np.tanh, np.tanh, np.tanh ]
-        NNactD = [ dTanh,   dTanh,   dTanh ] # Differentiation of tanh
-        Taus   = [1, 4, 12]
+        NNact  = [ 'tanh', 'tanh', 'tanh' ]
+        Taus   = [ 1, 4, 12 ]
 
         args   = (NNwts, NNb, NNact, Taus)
 
-        tNew   = np.linspace(5, 75, 50)
+        tNew      = np.linspace(5, 75, 50)
         startTime = time()
         result, specs =  model.solveY( y0, tNew, args, full_output=True )
         tDelta = time() - startTime
