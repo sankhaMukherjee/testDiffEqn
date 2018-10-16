@@ -1,0 +1,3038 @@
+{
+    "traceEvents": [
+        {
+            "name": "process_name",
+            "ph": "M",
+            "pid": 0,
+            "args": {
+                "name": "Allocators"
+            }
+        },
+        {
+            "name": "process_name",
+            "ph": "M",
+            "pid": 1,
+            "args": {
+                "name": "/device:GPU:0/stream:15 Compute"
+            }
+        },
+        {
+            "name": "process_name",
+            "ph": "M",
+            "pid": 2,
+            "args": {
+                "name": "/device:GPU:0/stream:15 Tensors"
+            }
+        },
+        {
+            "name": "process_name",
+            "ph": "M",
+            "pid": 3,
+            "args": {
+                "name": "/device:GPU:0/stream:14 Compute"
+            }
+        },
+        {
+            "name": "process_name",
+            "ph": "M",
+            "pid": 4,
+            "args": {
+                "name": "/device:GPU:0/stream:14 Tensors"
+            }
+        },
+        {
+            "name": "process_name",
+            "ph": "M",
+            "pid": 5,
+            "args": {
+                "name": "/device:GPU:0/memcpy Compute"
+            }
+        },
+        {
+            "name": "process_name",
+            "ph": "M",
+            "pid": 6,
+            "args": {
+                "name": "/device:GPU:0/memcpy Tensors"
+            }
+        },
+        {
+            "name": "process_name",
+            "ph": "M",
+            "pid": 7,
+            "args": {
+                "name": "/device:GPU:0/stream:all Compute"
+            }
+        },
+        {
+            "name": "process_name",
+            "ph": "M",
+            "pid": 8,
+            "args": {
+                "name": "/device:GPU:0/stream:all Tensors"
+            }
+        },
+        {
+            "name": "process_name",
+            "ph": "M",
+            "pid": 9,
+            "args": {
+                "name": "/device:GPU:0/stream:13 Compute"
+            }
+        },
+        {
+            "name": "process_name",
+            "ph": "M",
+            "pid": 10,
+            "args": {
+                "name": "/device:GPU:0/stream:13 Tensors"
+            }
+        },
+        {
+            "name": "process_name",
+            "ph": "M",
+            "pid": 11,
+            "args": {
+                "name": "/job:localhost/replica:0/task:0/device:GPU:0 Compute"
+            }
+        },
+        {
+            "name": "process_name",
+            "ph": "M",
+            "pid": 12,
+            "args": {
+                "name": "/job:localhost/replica:0/task:0/device:GPU:0 Tensors"
+            }
+        },
+        {
+            "name": "process_name",
+            "ph": "M",
+            "pid": 13,
+            "args": {
+                "name": "/job:localhost/replica:0/task:0/device:CPU:0 Compute"
+            }
+        },
+        {
+            "name": "process_name",
+            "ph": "M",
+            "pid": 14,
+            "args": {
+                "name": "/job:localhost/replica:0/task:0/device:CPU:0 Tensors"
+            }
+        },
+        {
+            "ph": "X",
+            "cat": "Op",
+            "name": "MEMCPYDtoH",
+            "pid": 1,
+            "tid": 0,
+            "ts": 1539686649642718,
+            "dur": 1,
+            "args": {
+                "name": "edge_132_rhs_operation/concat",
+                "op": "MEMCPYDtoH"
+            }
+        },
+        {
+            "ph": "X",
+            "cat": "Op",
+            "name": "MEMCPYHtoD",
+            "pid": 3,
+            "tid": 0,
+            "ts": 1539686649641573,
+            "dur": 1,
+            "args": {
+                "name": "edge_131__arg_rhs_operation/y_tf_0_4",
+                "op": "MEMCPYHtoD"
+            }
+        },
+        {
+            "ph": "X",
+            "cat": "Op",
+            "name": "MEMCPYHtoD",
+            "pid": 3,
+            "tid": 0,
+            "ts": 1539686649641608,
+            "dur": 1,
+            "args": {
+                "name": "edge_125__arg_rhs_operation/Aj_0_0",
+                "op": "MEMCPYHtoD"
+            }
+        },
+        {
+            "ph": "X",
+            "cat": "Op",
+            "name": "MEMCPYHtoD",
+            "pid": 3,
+            "tid": 0,
+            "ts": 1539686649641653,
+            "dur": 1,
+            "args": {
+                "name": "edge_129__arg_rhs_operation/stress_val_0_3",
+                "op": "MEMCPYHtoD"
+            }
+        },
+        {
+            "ph": "X",
+            "cat": "Op",
+            "name": "MEMCPYHtoD",
+            "pid": 3,
+            "tid": 0,
+            "ts": 1539686649641694,
+            "dur": 1,
+            "args": {
+                "name": "edge_127__arg_rhs_operation/Bj_0_1",
+                "op": "MEMCPYHtoD"
+            }
+        },
+        {
+            "ph": "X",
+            "cat": "Op",
+            "name": "MEMCPYHtoD",
+            "pid": 5,
+            "tid": 0,
+            "ts": 1539686649641573,
+            "dur": 1,
+            "args": {
+                "name": "edge_131__arg_rhs_operation/y_tf_0_4",
+                "op": "MEMCPYHtoD"
+            }
+        },
+        {
+            "ph": "X",
+            "cat": "Op",
+            "name": "MEMCPYHtoD",
+            "pid": 5,
+            "tid": 0,
+            "ts": 1539686649641608,
+            "dur": 1,
+            "args": {
+                "name": "edge_125__arg_rhs_operation/Aj_0_0",
+                "op": "MEMCPYHtoD"
+            }
+        },
+        {
+            "ph": "X",
+            "cat": "Op",
+            "name": "MEMCPYHtoD",
+            "pid": 5,
+            "tid": 0,
+            "ts": 1539686649641653,
+            "dur": 1,
+            "args": {
+                "name": "edge_129__arg_rhs_operation/stress_val_0_3",
+                "op": "MEMCPYHtoD"
+            }
+        },
+        {
+            "ph": "X",
+            "cat": "Op",
+            "name": "MEMCPYHtoD",
+            "pid": 5,
+            "tid": 0,
+            "ts": 1539686649641694,
+            "dur": 1,
+            "args": {
+                "name": "edge_127__arg_rhs_operation/Bj_0_1",
+                "op": "MEMCPYHtoD"
+            }
+        },
+        {
+            "ph": "X",
+            "cat": "Op",
+            "name": "ConcatV2",
+            "pid": 5,
+            "tid": 0,
+            "ts": 1539686649641888,
+            "dur": 1,
+            "args": {
+                "name": "rhs_operation/user_00000/slow_Components/cpnt0/concat0",
+                "op": "ConcatV2"
+            }
+        },
+        {
+            "ph": "X",
+            "cat": "Op",
+            "name": "ConcatV2",
+            "pid": 5,
+            "tid": 0,
+            "ts": 1539686649641988,
+            "dur": 1,
+            "args": {
+                "name": "rhs_operation/user_00000/slow_Components/cpnt0/concat0",
+                "op": "ConcatV2"
+            }
+        },
+        {
+            "ph": "X",
+            "cat": "Op",
+            "name": "Pack",
+            "pid": 5,
+            "tid": 0,
+            "ts": 1539686649642580,
+            "dur": 1,
+            "args": {
+                "name": "rhs_operation/user_00000/slow_Components/concat/values_1",
+                "op": "Pack"
+            }
+        },
+        {
+            "ph": "X",
+            "cat": "Op",
+            "name": "Pack",
+            "pid": 5,
+            "tid": 0,
+            "ts": 1539686649642596,
+            "dur": 1,
+            "args": {
+                "name": "rhs_operation/user_00000/slow_Components/concat/values_1",
+                "op": "Pack"
+            }
+        },
+        {
+            "ph": "X",
+            "cat": "Op",
+            "name": "Pack",
+            "pid": 5,
+            "tid": 0,
+            "ts": 1539686649642609,
+            "dur": 1,
+            "args": {
+                "name": "rhs_operation/user_00000/slow_Components/concat/values_1",
+                "op": "Pack"
+            }
+        },
+        {
+            "ph": "X",
+            "cat": "Op",
+            "name": "ConcatV2",
+            "pid": 5,
+            "tid": 0,
+            "ts": 1539686649642652,
+            "dur": 1,
+            "args": {
+                "name": "rhs_operation/user_00000/slow_Components/concat",
+                "op": "ConcatV2"
+            }
+        },
+        {
+            "ph": "X",
+            "cat": "Op",
+            "name": "ConcatV2",
+            "pid": 5,
+            "tid": 0,
+            "ts": 1539686649642666,
+            "dur": 1,
+            "args": {
+                "name": "rhs_operation/user_00000/slow_Components/concat",
+                "op": "ConcatV2"
+            }
+        },
+        {
+            "ph": "X",
+            "cat": "Op",
+            "name": "MEMCPYDtoH",
+            "pid": 5,
+            "tid": 0,
+            "ts": 1539686649642718,
+            "dur": 1,
+            "args": {
+                "name": "edge_132_rhs_operation/concat",
+                "op": "MEMCPYDtoH"
+            }
+        },
+        {
+            "ph": "X",
+            "cat": "Op",
+            "name": "StridedSlice",
+            "pid": 7,
+            "tid": 0,
+            "ts": 1539686649641813,
+            "dur": 3,
+            "args": {
+                "name": "rhs_operation/user_00000/strided_slice",
+                "op": "StridedSlice"
+            }
+        },
+        {
+            "ph": "X",
+            "cat": "Op",
+            "name": "Add",
+            "pid": 7,
+            "tid": 0,
+            "ts": 1539686649641853,
+            "dur": 3,
+            "args": {
+                "name": "rhs_operation/user_00000/Nnt_parts/add",
+                "op": "Add"
+            }
+        },
+        {
+            "ph": "X",
+            "cat": "Op",
+            "name": "Mul",
+            "pid": 7,
+            "tid": 0,
+            "ts": 1539686649641919,
+            "dur": 3,
+            "args": {
+                "name": "rhs_operation/user_00000/Nnt_parts/mul",
+                "op": "Mul"
+            }
+        },
+        {
+            "ph": "X",
+            "cat": "Op",
+            "name": "Add",
+            "pid": 7,
+            "tid": 0,
+            "ts": 1539686649641961,
+            "dur": 3,
+            "args": {
+                "name": "rhs_operation/user_00000/Nnt_parts/add_1",
+                "op": "Add"
+            }
+        },
+        {
+            "ph": "X",
+            "cat": "Op",
+            "name": "Mul",
+            "pid": 7,
+            "tid": 0,
+            "ts": 1539686649642012,
+            "dur": 3,
+            "args": {
+                "name": "rhs_operation/user_00000/Nnt_parts/mul_1",
+                "op": "Mul"
+            }
+        },
+        {
+            "ph": "X",
+            "cat": "Op",
+            "name": "MatMul",
+            "pid": 7,
+            "tid": 0,
+            "ts": 1539686649642060,
+            "dur": 4,
+            "args": {
+                "name": "rhs_operation/user_00000/slow_Components/cpnt0/MatMul",
+                "op": "MatMul"
+            }
+        },
+        {
+            "ph": "X",
+            "cat": "Op",
+            "name": "StridedSlice",
+            "pid": 7,
+            "tid": 0,
+            "ts": 1539686649642085,
+            "dur": 3,
+            "args": {
+                "name": "rhs_operation/user_00000/slow_Components/cpnt1/strided_slice_2",
+                "op": "StridedSlice"
+            }
+        },
+        {
+            "ph": "X",
+            "cat": "Op",
+            "name": "Add",
+            "pid": 7,
+            "tid": 0,
+            "ts": 1539686649642113,
+            "dur": 3,
+            "args": {
+                "name": "rhs_operation/user_00000/slow_Components/cpnt0/add",
+                "op": "Add"
+            }
+        },
+        {
+            "ph": "X",
+            "cat": "Op",
+            "name": "StridedSlice",
+            "pid": 7,
+            "tid": 0,
+            "ts": 1539686649642132,
+            "dur": 3,
+            "args": {
+                "name": "rhs_operation/user_00000/slow_Components/cpnt0/strided_slice_2",
+                "op": "StridedSlice"
+            }
+        },
+        {
+            "ph": "X",
+            "cat": "Op",
+            "name": "Tanh",
+            "pid": 7,
+            "tid": 0,
+            "ts": 1539686649642150,
+            "dur": 3,
+            "args": {
+                "name": "rhs_operation/user_00000/slow_Components/cpnt0/Tanh",
+                "op": "Tanh"
+            }
+        },
+        {
+            "ph": "X",
+            "cat": "Op",
+            "name": "StridedSlice",
+            "pid": 7,
+            "tid": 0,
+            "ts": 1539686649642168,
+            "dur": 3,
+            "args": {
+                "name": "rhs_operation/user_00000/slow_Components/cpnt2/strided_slice_2",
+                "op": "StridedSlice"
+            }
+        },
+        {
+            "ph": "X",
+            "cat": "Op",
+            "name": "MatMul",
+            "pid": 7,
+            "tid": 0,
+            "ts": 1539686649642191,
+            "dur": 4,
+            "args": {
+                "name": "rhs_operation/user_00000/slow_Components/cpnt0/MatMul_1",
+                "op": "MatMul"
+            }
+        },
+        {
+            "ph": "X",
+            "cat": "Op",
+            "name": "RealDiv",
+            "pid": 7,
+            "tid": 0,
+            "ts": 1539686649642207,
+            "dur": 3,
+            "args": {
+                "name": "rhs_operation/user_00000/Nnt_parts/truediv",
+                "op": "RealDiv"
+            }
+        },
+        {
+            "ph": "X",
+            "cat": "Op",
+            "name": "Add",
+            "pid": 7,
+            "tid": 0,
+            "ts": 1539686649642232,
+            "dur": 3,
+            "args": {
+                "name": "rhs_operation/user_00000/slow_Components/cpnt0/add_1",
+                "op": "Add"
+            }
+        },
+        {
+            "ph": "X",
+            "cat": "Op",
+            "name": "RealDiv",
+            "pid": 7,
+            "tid": 0,
+            "ts": 1539686649642257,
+            "dur": 3,
+            "args": {
+                "name": "rhs_operation/user_00000/Nnt_parts/truediv_1",
+                "op": "RealDiv"
+            }
+        },
+        {
+            "ph": "X",
+            "cat": "Op",
+            "name": "Tanh",
+            "pid": 7,
+            "tid": 0,
+            "ts": 1539686649642274,
+            "dur": 3,
+            "args": {
+                "name": "rhs_operation/user_00000/slow_Components/cpnt0/Tanh_1",
+                "op": "Tanh"
+            }
+        },
+        {
+            "ph": "X",
+            "cat": "Op",
+            "name": "RealDiv",
+            "pid": 7,
+            "tid": 0,
+            "ts": 1539686649642297,
+            "dur": 3,
+            "args": {
+                "name": "rhs_operation/user_00000/slow_Components/cpnt1/truediv",
+                "op": "RealDiv"
+            }
+        },
+        {
+            "ph": "X",
+            "cat": "Op",
+            "name": "MatMul",
+            "pid": 7,
+            "tid": 0,
+            "ts": 1539686649642312,
+            "dur": 4,
+            "args": {
+                "name": "rhs_operation/user_00000/slow_Components/cpnt0/MatMul_2",
+                "op": "MatMul"
+            }
+        },
+        {
+            "ph": "X",
+            "cat": "Op",
+            "name": "RealDiv",
+            "pid": 7,
+            "tid": 0,
+            "ts": 1539686649642330,
+            "dur": 3,
+            "args": {
+                "name": "rhs_operation/user_00000/slow_Components/cpnt0/truediv",
+                "op": "RealDiv"
+            }
+        },
+        {
+            "ph": "X",
+            "cat": "Op",
+            "name": "Add",
+            "pid": 7,
+            "tid": 0,
+            "ts": 1539686649642352,
+            "dur": 3,
+            "args": {
+                "name": "rhs_operation/user_00000/slow_Components/cpnt0/add_2",
+                "op": "Add"
+            }
+        },
+        {
+            "ph": "X",
+            "cat": "Op",
+            "name": "RealDiv",
+            "pid": 7,
+            "tid": 0,
+            "ts": 1539686649642376,
+            "dur": 3,
+            "args": {
+                "name": "rhs_operation/user_00000/slow_Components/cpnt2/truediv",
+                "op": "RealDiv"
+            }
+        },
+        {
+            "ph": "X",
+            "cat": "Op",
+            "name": "Tanh",
+            "pid": 7,
+            "tid": 0,
+            "ts": 1539686649642392,
+            "dur": 3,
+            "args": {
+                "name": "rhs_operation/user_00000/slow_Components/cpnt0/Tanh_2",
+                "op": "Tanh"
+            }
+        },
+        {
+            "ph": "X",
+            "cat": "Op",
+            "name": "Sub",
+            "pid": 7,
+            "tid": 0,
+            "ts": 1539686649642417,
+            "dur": 3,
+            "args": {
+                "name": "rhs_operation/user_00000/Nnt_parts/sub",
+                "op": "Sub"
+            }
+        },
+        {
+            "ph": "X",
+            "cat": "Op",
+            "name": "Sub",
+            "pid": 7,
+            "tid": 0,
+            "ts": 1539686649642442,
+            "dur": 3,
+            "args": {
+                "name": "rhs_operation/user_00000/slow_Components/cpnt1/sub",
+                "op": "Sub"
+            }
+        },
+        {
+            "ph": "X",
+            "cat": "Op",
+            "name": "Sub",
+            "pid": 7,
+            "tid": 0,
+            "ts": 1539686649642466,
+            "dur": 3,
+            "args": {
+                "name": "rhs_operation/user_00000/Nnt_parts/sub_1",
+                "op": "Sub"
+            }
+        },
+        {
+            "ph": "X",
+            "cat": "Op",
+            "name": "Sub",
+            "pid": 7,
+            "tid": 0,
+            "ts": 1539686649642503,
+            "dur": 3,
+            "args": {
+                "name": "rhs_operation/user_00000/slow_Components/cpnt0/sub",
+                "op": "Sub"
+            }
+        },
+        {
+            "ph": "X",
+            "cat": "Op",
+            "name": "Sub",
+            "pid": 7,
+            "tid": 0,
+            "ts": 1539686649642535,
+            "dur": 3,
+            "args": {
+                "name": "rhs_operation/user_00000/slow_Components/cpnt2/sub",
+                "op": "Sub"
+            }
+        },
+        {
+            "ph": "X",
+            "cat": "Op",
+            "name": "StridedSlice",
+            "pid": 9,
+            "tid": 0,
+            "ts": 1539686649641813,
+            "dur": 3,
+            "args": {
+                "name": "rhs_operation/user_00000/strided_slice",
+                "op": "StridedSlice"
+            }
+        },
+        {
+            "ph": "X",
+            "cat": "Op",
+            "name": "Add",
+            "pid": 9,
+            "tid": 0,
+            "ts": 1539686649641853,
+            "dur": 3,
+            "args": {
+                "name": "rhs_operation/user_00000/Nnt_parts/add",
+                "op": "Add"
+            }
+        },
+        {
+            "ph": "X",
+            "cat": "Op",
+            "name": "Mul",
+            "pid": 9,
+            "tid": 0,
+            "ts": 1539686649641919,
+            "dur": 3,
+            "args": {
+                "name": "rhs_operation/user_00000/Nnt_parts/mul",
+                "op": "Mul"
+            }
+        },
+        {
+            "ph": "X",
+            "cat": "Op",
+            "name": "Add",
+            "pid": 9,
+            "tid": 0,
+            "ts": 1539686649641961,
+            "dur": 3,
+            "args": {
+                "name": "rhs_operation/user_00000/Nnt_parts/add_1",
+                "op": "Add"
+            }
+        },
+        {
+            "ph": "X",
+            "cat": "Op",
+            "name": "Mul",
+            "pid": 9,
+            "tid": 0,
+            "ts": 1539686649642012,
+            "dur": 3,
+            "args": {
+                "name": "rhs_operation/user_00000/Nnt_parts/mul_1",
+                "op": "Mul"
+            }
+        },
+        {
+            "ph": "X",
+            "cat": "Op",
+            "name": "MatMul",
+            "pid": 9,
+            "tid": 0,
+            "ts": 1539686649642060,
+            "dur": 4,
+            "args": {
+                "name": "rhs_operation/user_00000/slow_Components/cpnt0/MatMul",
+                "op": "MatMul"
+            }
+        },
+        {
+            "ph": "X",
+            "cat": "Op",
+            "name": "StridedSlice",
+            "pid": 9,
+            "tid": 0,
+            "ts": 1539686649642085,
+            "dur": 3,
+            "args": {
+                "name": "rhs_operation/user_00000/slow_Components/cpnt1/strided_slice_2",
+                "op": "StridedSlice"
+            }
+        },
+        {
+            "ph": "X",
+            "cat": "Op",
+            "name": "Add",
+            "pid": 9,
+            "tid": 0,
+            "ts": 1539686649642113,
+            "dur": 3,
+            "args": {
+                "name": "rhs_operation/user_00000/slow_Components/cpnt0/add",
+                "op": "Add"
+            }
+        },
+        {
+            "ph": "X",
+            "cat": "Op",
+            "name": "StridedSlice",
+            "pid": 9,
+            "tid": 0,
+            "ts": 1539686649642132,
+            "dur": 3,
+            "args": {
+                "name": "rhs_operation/user_00000/slow_Components/cpnt0/strided_slice_2",
+                "op": "StridedSlice"
+            }
+        },
+        {
+            "ph": "X",
+            "cat": "Op",
+            "name": "Tanh",
+            "pid": 9,
+            "tid": 0,
+            "ts": 1539686649642150,
+            "dur": 3,
+            "args": {
+                "name": "rhs_operation/user_00000/slow_Components/cpnt0/Tanh",
+                "op": "Tanh"
+            }
+        },
+        {
+            "ph": "X",
+            "cat": "Op",
+            "name": "StridedSlice",
+            "pid": 9,
+            "tid": 0,
+            "ts": 1539686649642168,
+            "dur": 3,
+            "args": {
+                "name": "rhs_operation/user_00000/slow_Components/cpnt2/strided_slice_2",
+                "op": "StridedSlice"
+            }
+        },
+        {
+            "ph": "X",
+            "cat": "Op",
+            "name": "MatMul",
+            "pid": 9,
+            "tid": 0,
+            "ts": 1539686649642191,
+            "dur": 4,
+            "args": {
+                "name": "rhs_operation/user_00000/slow_Components/cpnt0/MatMul_1",
+                "op": "MatMul"
+            }
+        },
+        {
+            "ph": "X",
+            "cat": "Op",
+            "name": "RealDiv",
+            "pid": 9,
+            "tid": 0,
+            "ts": 1539686649642207,
+            "dur": 3,
+            "args": {
+                "name": "rhs_operation/user_00000/Nnt_parts/truediv",
+                "op": "RealDiv"
+            }
+        },
+        {
+            "ph": "X",
+            "cat": "Op",
+            "name": "Add",
+            "pid": 9,
+            "tid": 0,
+            "ts": 1539686649642232,
+            "dur": 3,
+            "args": {
+                "name": "rhs_operation/user_00000/slow_Components/cpnt0/add_1",
+                "op": "Add"
+            }
+        },
+        {
+            "ph": "X",
+            "cat": "Op",
+            "name": "RealDiv",
+            "pid": 9,
+            "tid": 0,
+            "ts": 1539686649642257,
+            "dur": 3,
+            "args": {
+                "name": "rhs_operation/user_00000/Nnt_parts/truediv_1",
+                "op": "RealDiv"
+            }
+        },
+        {
+            "ph": "X",
+            "cat": "Op",
+            "name": "Tanh",
+            "pid": 9,
+            "tid": 0,
+            "ts": 1539686649642274,
+            "dur": 3,
+            "args": {
+                "name": "rhs_operation/user_00000/slow_Components/cpnt0/Tanh_1",
+                "op": "Tanh"
+            }
+        },
+        {
+            "ph": "X",
+            "cat": "Op",
+            "name": "RealDiv",
+            "pid": 9,
+            "tid": 0,
+            "ts": 1539686649642297,
+            "dur": 3,
+            "args": {
+                "name": "rhs_operation/user_00000/slow_Components/cpnt1/truediv",
+                "op": "RealDiv"
+            }
+        },
+        {
+            "ph": "X",
+            "cat": "Op",
+            "name": "MatMul",
+            "pid": 9,
+            "tid": 0,
+            "ts": 1539686649642312,
+            "dur": 4,
+            "args": {
+                "name": "rhs_operation/user_00000/slow_Components/cpnt0/MatMul_2",
+                "op": "MatMul"
+            }
+        },
+        {
+            "ph": "X",
+            "cat": "Op",
+            "name": "RealDiv",
+            "pid": 9,
+            "tid": 0,
+            "ts": 1539686649642330,
+            "dur": 3,
+            "args": {
+                "name": "rhs_operation/user_00000/slow_Components/cpnt0/truediv",
+                "op": "RealDiv"
+            }
+        },
+        {
+            "ph": "X",
+            "cat": "Op",
+            "name": "Add",
+            "pid": 9,
+            "tid": 0,
+            "ts": 1539686649642352,
+            "dur": 3,
+            "args": {
+                "name": "rhs_operation/user_00000/slow_Components/cpnt0/add_2",
+                "op": "Add"
+            }
+        },
+        {
+            "ph": "X",
+            "cat": "Op",
+            "name": "RealDiv",
+            "pid": 9,
+            "tid": 0,
+            "ts": 1539686649642376,
+            "dur": 3,
+            "args": {
+                "name": "rhs_operation/user_00000/slow_Components/cpnt2/truediv",
+                "op": "RealDiv"
+            }
+        },
+        {
+            "ph": "X",
+            "cat": "Op",
+            "name": "Tanh",
+            "pid": 9,
+            "tid": 0,
+            "ts": 1539686649642392,
+            "dur": 3,
+            "args": {
+                "name": "rhs_operation/user_00000/slow_Components/cpnt0/Tanh_2",
+                "op": "Tanh"
+            }
+        },
+        {
+            "ph": "X",
+            "cat": "Op",
+            "name": "Sub",
+            "pid": 9,
+            "tid": 0,
+            "ts": 1539686649642417,
+            "dur": 3,
+            "args": {
+                "name": "rhs_operation/user_00000/Nnt_parts/sub",
+                "op": "Sub"
+            }
+        },
+        {
+            "ph": "X",
+            "cat": "Op",
+            "name": "Sub",
+            "pid": 9,
+            "tid": 0,
+            "ts": 1539686649642442,
+            "dur": 3,
+            "args": {
+                "name": "rhs_operation/user_00000/slow_Components/cpnt1/sub",
+                "op": "Sub"
+            }
+        },
+        {
+            "ph": "X",
+            "cat": "Op",
+            "name": "Sub",
+            "pid": 9,
+            "tid": 0,
+            "ts": 1539686649642466,
+            "dur": 3,
+            "args": {
+                "name": "rhs_operation/user_00000/Nnt_parts/sub_1",
+                "op": "Sub"
+            }
+        },
+        {
+            "ph": "X",
+            "cat": "Op",
+            "name": "Sub",
+            "pid": 9,
+            "tid": 0,
+            "ts": 1539686649642503,
+            "dur": 3,
+            "args": {
+                "name": "rhs_operation/user_00000/slow_Components/cpnt0/sub",
+                "op": "Sub"
+            }
+        },
+        {
+            "ph": "X",
+            "cat": "Op",
+            "name": "Sub",
+            "pid": 9,
+            "tid": 0,
+            "ts": 1539686649642535,
+            "dur": 3,
+            "args": {
+                "name": "rhs_operation/user_00000/slow_Components/cpnt2/sub",
+                "op": "Sub"
+            }
+        },
+        {
+            "ph": "X",
+            "cat": "Op",
+            "name": "ConcatV2",
+            "pid": 9,
+            "tid": 1,
+            "ts": 1539686649641888,
+            "dur": 1,
+            "args": {
+                "name": "rhs_operation/user_00000/slow_Components/cpnt0/concat0",
+                "op": "ConcatV2"
+            }
+        },
+        {
+            "ph": "X",
+            "cat": "Op",
+            "name": "ConcatV2",
+            "pid": 9,
+            "tid": 1,
+            "ts": 1539686649641988,
+            "dur": 1,
+            "args": {
+                "name": "rhs_operation/user_00000/slow_Components/cpnt0/concat0",
+                "op": "ConcatV2"
+            }
+        },
+        {
+            "ph": "X",
+            "cat": "Op",
+            "name": "Pack",
+            "pid": 9,
+            "tid": 0,
+            "ts": 1539686649642580,
+            "dur": 1,
+            "args": {
+                "name": "rhs_operation/user_00000/slow_Components/concat/values_1",
+                "op": "Pack"
+            }
+        },
+        {
+            "ph": "X",
+            "cat": "Op",
+            "name": "Pack",
+            "pid": 9,
+            "tid": 0,
+            "ts": 1539686649642596,
+            "dur": 1,
+            "args": {
+                "name": "rhs_operation/user_00000/slow_Components/concat/values_1",
+                "op": "Pack"
+            }
+        },
+        {
+            "ph": "X",
+            "cat": "Op",
+            "name": "Pack",
+            "pid": 9,
+            "tid": 0,
+            "ts": 1539686649642609,
+            "dur": 1,
+            "args": {
+                "name": "rhs_operation/user_00000/slow_Components/concat/values_1",
+                "op": "Pack"
+            }
+        },
+        {
+            "ph": "X",
+            "cat": "Op",
+            "name": "ConcatV2",
+            "pid": 9,
+            "tid": 0,
+            "ts": 1539686649642652,
+            "dur": 1,
+            "args": {
+                "name": "rhs_operation/user_00000/slow_Components/concat",
+                "op": "ConcatV2"
+            }
+        },
+        {
+            "ph": "X",
+            "cat": "Op",
+            "name": "ConcatV2",
+            "pid": 9,
+            "tid": 0,
+            "ts": 1539686649642666,
+            "dur": 1,
+            "args": {
+                "name": "rhs_operation/user_00000/slow_Components/concat",
+                "op": "ConcatV2"
+            }
+        },
+        {
+            "ph": "X",
+            "cat": "Op",
+            "name": "NoOp",
+            "pid": 11,
+            "tid": 0,
+            "ts": 1539686649641409,
+            "dur": 23,
+            "args": {
+                "name": "_SOURCE",
+                "op": "NoOp"
+            }
+        },
+        {
+            "ph": "X",
+            "cat": "Op",
+            "name": "VariableV2",
+            "pid": 11,
+            "tid": 0,
+            "ts": 1539686649641483,
+            "dur": 27,
+            "args": {
+                "name": "weights/fj_0",
+                "op": "VariableV2"
+            }
+        },
+        {
+            "ph": "X",
+            "cat": "Op",
+            "name": "VariableV2",
+            "pid": 11,
+            "tid": 0,
+            "ts": 1539686649641514,
+            "dur": 55,
+            "args": {
+                "name": "weights/rj_0",
+                "op": "VariableV2"
+            }
+        },
+        {
+            "ph": "X",
+            "cat": "Op",
+            "name": "Const",
+            "pid": 11,
+            "tid": 0,
+            "ts": 1539686649641573,
+            "dur": 9,
+            "args": {
+                "name": "rhs_operation/user_00000/Nnt_parts/add/x",
+                "op": "Const"
+            }
+        },
+        {
+            "ph": "X",
+            "cat": "Op",
+            "name": "Const",
+            "pid": 11,
+            "tid": 0,
+            "ts": 1539686649641584,
+            "dur": 7,
+            "args": {
+                "name": "rhs_operation/user_00000/Nnt_parts/strided_slice/stack",
+                "op": "Const"
+            }
+        },
+        {
+            "ph": "X",
+            "cat": "Op",
+            "name": "Const",
+            "pid": 11,
+            "tid": 0,
+            "ts": 1539686649641593,
+            "dur": 6,
+            "args": {
+                "name": "rhs_operation/user_00000/Nnt_parts/strided_slice/stack_1",
+                "op": "Const"
+            }
+        },
+        {
+            "ph": "X",
+            "cat": "Op",
+            "name": "VariableV2",
+            "pid": 11,
+            "tid": 0,
+            "ts": 1539686649641601,
+            "dur": 7,
+            "args": {
+                "name": "weights/tau_2",
+                "op": "VariableV2"
+            }
+        },
+        {
+            "ph": "X",
+            "cat": "Op",
+            "name": "VariableV2",
+            "pid": 11,
+            "tid": 0,
+            "ts": 1539686649641609,
+            "dur": 7,
+            "args": {
+                "name": "weights/mj_0",
+                "op": "VariableV2"
+            }
+        },
+        {
+            "ph": "X",
+            "cat": "Op",
+            "name": "VariableV2",
+            "pid": 11,
+            "tid": 0,
+            "ts": 1539686649641618,
+            "dur": 6,
+            "args": {
+                "name": "weights/bias_1",
+                "op": "VariableV2"
+            }
+        },
+        {
+            "ph": "X",
+            "cat": "Op",
+            "name": "Const",
+            "pid": 11,
+            "tid": 0,
+            "ts": 1539686649641625,
+            "dur": 6,
+            "args": {
+                "name": "rhs_operation/user_00000/slow_Components/cpnt1/strided_slice_2/stack_1",
+                "op": "Const"
+            }
+        },
+        {
+            "ph": "X",
+            "cat": "Op",
+            "name": "Const",
+            "pid": 11,
+            "tid": 0,
+            "ts": 1539686649641632,
+            "dur": 5,
+            "args": {
+                "name": "rhs_operation/user_00000/slow_Components/cpnt0/concat0/axis",
+                "op": "Const"
+            }
+        },
+        {
+            "ph": "X",
+            "cat": "Op",
+            "name": "Const",
+            "pid": 11,
+            "tid": 0,
+            "ts": 1539686649641639,
+            "dur": 5,
+            "args": {
+                "name": "rhs_operation/user_00000/slow_Components/cpnt0/Reshape/shape",
+                "op": "Const"
+            }
+        },
+        {
+            "ph": "X",
+            "cat": "Op",
+            "name": "VariableV2",
+            "pid": 11,
+            "tid": 0,
+            "ts": 1539686649641645,
+            "dur": 21,
+            "args": {
+                "name": "weights/tau_1",
+                "op": "VariableV2"
+            }
+        },
+        {
+            "ph": "X",
+            "cat": "Op",
+            "name": "VariableV2",
+            "pid": 11,
+            "tid": 0,
+            "ts": 1539686649641667,
+            "dur": 5,
+            "args": {
+                "name": "weights/wts_2",
+                "op": "VariableV2"
+            }
+        },
+        {
+            "ph": "X",
+            "cat": "Op",
+            "name": "VariableV2",
+            "pid": 11,
+            "tid": 0,
+            "ts": 1539686649641673,
+            "dur": 5,
+            "args": {
+                "name": "weights/wts_1",
+                "op": "VariableV2"
+            }
+        },
+        {
+            "ph": "X",
+            "cat": "Op",
+            "name": "VariableV2",
+            "pid": 11,
+            "tid": 0,
+            "ts": 1539686649641679,
+            "dur": 4,
+            "args": {
+                "name": "weights/tau_0",
+                "op": "VariableV2"
+            }
+        },
+        {
+            "ph": "X",
+            "cat": "Op",
+            "name": "VariableV2",
+            "pid": 11,
+            "tid": 0,
+            "ts": 1539686649641684,
+            "dur": 5,
+            "args": {
+                "name": "weights/wts_0",
+                "op": "VariableV2"
+            }
+        },
+        {
+            "ph": "X",
+            "cat": "Op",
+            "name": "Const",
+            "pid": 11,
+            "tid": 0,
+            "ts": 1539686649641691,
+            "dur": 4,
+            "args": {
+                "name": "rhs_operation/user_00000/strided_slice/stack_1",
+                "op": "Const"
+            }
+        },
+        {
+            "ph": "X",
+            "cat": "Op",
+            "name": "VariableV2",
+            "pid": 11,
+            "tid": 0,
+            "ts": 1539686649641696,
+            "dur": 4,
+            "args": {
+                "name": "weights/bias_2",
+                "op": "VariableV2"
+            }
+        },
+        {
+            "ph": "X",
+            "cat": "Op",
+            "name": "VariableV2",
+            "pid": 11,
+            "tid": 0,
+            "ts": 1539686649641701,
+            "dur": 4,
+            "args": {
+                "name": "weights/bias_0",
+                "op": "VariableV2"
+            }
+        },
+        {
+            "ph": "X",
+            "cat": "Op",
+            "name": "Identity",
+            "pid": 11,
+            "tid": 0,
+            "ts": 1539686649641706,
+            "dur": 4,
+            "args": {
+                "name": "weights/fj_0/read",
+                "op": "Identity",
+                "input0": "weights/fj_0"
+            }
+        },
+        {
+            "ph": "X",
+            "cat": "Op",
+            "name": "Identity",
+            "pid": 11,
+            "tid": 0,
+            "ts": 1539686649641712,
+            "dur": 3,
+            "args": {
+                "name": "weights/rj_0/read",
+                "op": "Identity",
+                "input0": "weights/rj_0"
+            }
+        },
+        {
+            "ph": "X",
+            "cat": "Op",
+            "name": "Identity",
+            "pid": 11,
+            "tid": 0,
+            "ts": 1539686649641717,
+            "dur": 3,
+            "args": {
+                "name": "weights/tau_2/read",
+                "op": "Identity",
+                "input0": "weights/tau_2"
+            }
+        },
+        {
+            "ph": "X",
+            "cat": "Op",
+            "name": "Identity",
+            "pid": 11,
+            "tid": 0,
+            "ts": 1539686649641721,
+            "dur": 4,
+            "args": {
+                "name": "weights/mj_0/read",
+                "op": "Identity",
+                "input0": "weights/mj_0"
+            }
+        },
+        {
+            "ph": "X",
+            "cat": "Op",
+            "name": "Identity",
+            "pid": 11,
+            "tid": 0,
+            "ts": 1539686649641726,
+            "dur": 4,
+            "args": {
+                "name": "weights/bias_1/read",
+                "op": "Identity",
+                "input0": "weights/bias_1"
+            }
+        },
+        {
+            "ph": "X",
+            "cat": "Op",
+            "name": "Identity",
+            "pid": 11,
+            "tid": 0,
+            "ts": 1539686649641731,
+            "dur": 3,
+            "args": {
+                "name": "weights/tau_1/read",
+                "op": "Identity",
+                "input0": "weights/tau_1"
+            }
+        },
+        {
+            "ph": "X",
+            "cat": "Op",
+            "name": "Identity",
+            "pid": 11,
+            "tid": 0,
+            "ts": 1539686649641736,
+            "dur": 4,
+            "args": {
+                "name": "weights/wts_2/read",
+                "op": "Identity",
+                "input0": "weights/wts_2"
+            }
+        },
+        {
+            "ph": "X",
+            "cat": "Op",
+            "name": "Identity",
+            "pid": 11,
+            "tid": 0,
+            "ts": 1539686649641741,
+            "dur": 4,
+            "args": {
+                "name": "weights/wts_1/read",
+                "op": "Identity",
+                "input0": "weights/wts_1"
+            }
+        },
+        {
+            "ph": "X",
+            "cat": "Op",
+            "name": "Identity",
+            "pid": 11,
+            "tid": 0,
+            "ts": 1539686649641746,
+            "dur": 4,
+            "args": {
+                "name": "weights/tau_0/read",
+                "op": "Identity",
+                "input0": "weights/tau_0"
+            }
+        },
+        {
+            "ph": "X",
+            "cat": "Op",
+            "name": "Identity",
+            "pid": 11,
+            "tid": 0,
+            "ts": 1539686649641751,
+            "dur": 4,
+            "args": {
+                "name": "weights/wts_0/read",
+                "op": "Identity",
+                "input0": "weights/wts_0"
+            }
+        },
+        {
+            "ph": "X",
+            "cat": "Op",
+            "name": "StridedSlice",
+            "pid": 11,
+            "tid": 0,
+            "ts": 1539686649641756,
+            "dur": 25,
+            "args": {
+                "name": "rhs_operation/user_00000/Nnt_parts/strided_slice",
+                "op": "StridedSlice",
+                "input0": "_arg_rhs_operation/Aj_0_0/_25",
+                "input1": "rhs_operation/user_00000/Nnt_parts/strided_slice/stack",
+                "input2": "rhs_operation/user_00000/Nnt_parts/strided_slice/stack_1",
+                "input3": "rhs_operation/user_00000/Nnt_parts/strided_slice/stack_1"
+            }
+        },
+        {
+            "ph": "s",
+            "cat": "DataFlow",
+            "name": "_arg_rhs_operation/Aj_0_0",
+            "pid": 13,
+            "tid": 0,
+            "ts": 1539686649641514,
+            "id": 0
+        },
+        {
+            "ph": "t",
+            "cat": "DataFlow",
+            "name": "_arg_rhs_operation/Aj_0_0",
+            "pid": 11,
+            "tid": 0,
+            "ts": 1539686649641756,
+            "id": 0
+        },
+        {
+            "ph": "X",
+            "cat": "Op",
+            "name": "StridedSlice",
+            "pid": 11,
+            "tid": 0,
+            "ts": 1539686649641794,
+            "dur": 20,
+            "args": {
+                "name": "rhs_operation/user_00000/strided_slice_1",
+                "op": "StridedSlice",
+                "input0": "_arg_rhs_operation/stress_val_0_3/_21",
+                "input1": "rhs_operation/user_00000/Nnt_parts/strided_slice/stack",
+                "input2": "rhs_operation/user_00000/Nnt_parts/strided_slice/stack_1",
+                "input3": "rhs_operation/user_00000/Nnt_parts/strided_slice/stack_1"
+            }
+        },
+        {
+            "ph": "s",
+            "cat": "DataFlow",
+            "name": "_arg_rhs_operation/stress_val_0_3",
+            "pid": 13,
+            "tid": 0,
+            "ts": 1539686649641491,
+            "id": 1
+        },
+        {
+            "ph": "t",
+            "cat": "DataFlow",
+            "name": "_arg_rhs_operation/stress_val_0_3",
+            "pid": 11,
+            "tid": 0,
+            "ts": 1539686649641794,
+            "id": 1
+        },
+        {
+            "ph": "X",
+            "cat": "Op",
+            "name": "StridedSlice",
+            "pid": 11,
+            "tid": 1,
+            "ts": 1539686649641756,
+            "dur": 67,
+            "args": {
+                "name": "rhs_operation/user_00000/strided_slice",
+                "op": "StridedSlice",
+                "input0": "_arg_rhs_operation/y_tf_0_4/_19",
+                "input1": "rhs_operation/user_00000/Nnt_parts/strided_slice/stack",
+                "input2": "rhs_operation/user_00000/strided_slice/stack_1",
+                "input3": "rhs_operation/user_00000/Nnt_parts/strided_slice/stack_1"
+            }
+        },
+        {
+            "ph": "s",
+            "cat": "DataFlow",
+            "name": "_arg_rhs_operation/y_tf_0_4",
+            "pid": 13,
+            "tid": 0,
+            "ts": 1539686649641478,
+            "id": 2
+        },
+        {
+            "ph": "t",
+            "cat": "DataFlow",
+            "name": "_arg_rhs_operation/y_tf_0_4",
+            "pid": 11,
+            "tid": 1,
+            "ts": 1539686649641756,
+            "id": 2
+        },
+        {
+            "ph": "s",
+            "cat": "DataFlow",
+            "name": "rhs_operation/user_00000/Nnt_parts/strided_slice/stack",
+            "pid": 11,
+            "tid": 0,
+            "ts": 1539686649641591,
+            "id": 3
+        },
+        {
+            "ph": "t",
+            "cat": "DataFlow",
+            "name": "rhs_operation/user_00000/Nnt_parts/strided_slice/stack",
+            "pid": 11,
+            "tid": 1,
+            "ts": 1539686649641756,
+            "id": 3
+        },
+        {
+            "ph": "s",
+            "cat": "DataFlow",
+            "name": "rhs_operation/user_00000/strided_slice/stack_1",
+            "pid": 11,
+            "tid": 0,
+            "ts": 1539686649641695,
+            "id": 4
+        },
+        {
+            "ph": "t",
+            "cat": "DataFlow",
+            "name": "rhs_operation/user_00000/strided_slice/stack_1",
+            "pid": 11,
+            "tid": 1,
+            "ts": 1539686649641756,
+            "id": 4
+        },
+        {
+            "ph": "s",
+            "cat": "DataFlow",
+            "name": "rhs_operation/user_00000/Nnt_parts/strided_slice/stack_1",
+            "pid": 11,
+            "tid": 0,
+            "ts": 1539686649641599,
+            "id": 5
+        },
+        {
+            "ph": "t",
+            "cat": "DataFlow",
+            "name": "rhs_operation/user_00000/Nnt_parts/strided_slice/stack_1",
+            "pid": 11,
+            "tid": 1,
+            "ts": 1539686649641756,
+            "id": 5
+        },
+        {
+            "ph": "X",
+            "cat": "Op",
+            "name": "Const",
+            "pid": 11,
+            "tid": 0,
+            "ts": 1539686649641819,
+            "dur": 8,
+            "args": {
+                "name": "ConstantFolding/rhs_operation/user_00000/slow_Components/cpnt0/concat0/values_1_const_axis",
+                "op": "Const",
+                "input0": "^rhs_operation/user_00000/strided_slice_1"
+            }
+        },
+        {
+            "ph": "X",
+            "cat": "Op",
+            "name": "ExpandDims",
+            "pid": 11,
+            "tid": 0,
+            "ts": 1539686649641830,
+            "dur": 7,
+            "args": {
+                "name": "rhs_operation/user_00000/slow_Components/cpnt0/concat0/values_1",
+                "op": "ExpandDims",
+                "input0": "rhs_operation/user_00000/strided_slice_1",
+                "input1": "ConstantFolding/rhs_operation/user_00000/slow_Components/cpnt0/concat0/values_1_const_axis"
+            }
+        },
+        {
+            "ph": "X",
+            "cat": "Op",
+            "name": "Identity",
+            "pid": 11,
+            "tid": 1,
+            "ts": 1539686649641831,
+            "dur": 7,
+            "args": {
+                "name": "weights/bias_2/read",
+                "op": "Identity",
+                "input0": "weights/bias_2"
+            }
+        },
+        {
+            "ph": "s",
+            "cat": "DataFlow",
+            "name": "weights/bias_2",
+            "pid": 11,
+            "tid": 0,
+            "ts": 1539686649641700,
+            "id": 6
+        },
+        {
+            "ph": "t",
+            "cat": "DataFlow",
+            "name": "weights/bias_2",
+            "pid": 11,
+            "tid": 1,
+            "ts": 1539686649641831,
+            "id": 6
+        },
+        {
+            "ph": "X",
+            "cat": "Op",
+            "name": "Identity",
+            "pid": 11,
+            "tid": 0,
+            "ts": 1539686649641840,
+            "dur": 4,
+            "args": {
+                "name": "weights/bias_0/read",
+                "op": "Identity",
+                "input0": "weights/bias_0"
+            }
+        },
+        {
+            "ph": "X",
+            "cat": "Op",
+            "name": "StridedSlice",
+            "pid": 11,
+            "tid": 2,
+            "ts": 1539686649641818,
+            "dur": 22,
+            "args": {
+                "name": "rhs_operation/user_00000/Nnt_parts/strided_slice_1",
+                "op": "StridedSlice",
+                "input0": "_arg_rhs_operation/Bj_0_1/_23",
+                "input1": "rhs_operation/user_00000/Nnt_parts/strided_slice/stack",
+                "input2": "rhs_operation/user_00000/Nnt_parts/strided_slice/stack_1",
+                "input3": "rhs_operation/user_00000/Nnt_parts/strided_slice/stack_1"
+            }
+        },
+        {
+            "ph": "s",
+            "cat": "DataFlow",
+            "name": "_arg_rhs_operation/Bj_0_1",
+            "pid": 13,
+            "tid": 0,
+            "ts": 1539686649641503,
+            "id": 7
+        },
+        {
+            "ph": "t",
+            "cat": "DataFlow",
+            "name": "_arg_rhs_operation/Bj_0_1",
+            "pid": 11,
+            "tid": 2,
+            "ts": 1539686649641818,
+            "id": 7
+        },
+        {
+            "ph": "s",
+            "cat": "DataFlow",
+            "name": "rhs_operation/user_00000/Nnt_parts/strided_slice/stack",
+            "pid": 11,
+            "tid": 0,
+            "ts": 1539686649641591,
+            "id": 8
+        },
+        {
+            "ph": "t",
+            "cat": "DataFlow",
+            "name": "rhs_operation/user_00000/Nnt_parts/strided_slice/stack",
+            "pid": 11,
+            "tid": 2,
+            "ts": 1539686649641818,
+            "id": 8
+        },
+        {
+            "ph": "s",
+            "cat": "DataFlow",
+            "name": "rhs_operation/user_00000/Nnt_parts/strided_slice/stack_1",
+            "pid": 11,
+            "tid": 0,
+            "ts": 1539686649641599,
+            "id": 9
+        },
+        {
+            "ph": "t",
+            "cat": "DataFlow",
+            "name": "rhs_operation/user_00000/Nnt_parts/strided_slice/stack_1",
+            "pid": 11,
+            "tid": 2,
+            "ts": 1539686649641818,
+            "id": 9
+        },
+        {
+            "ph": "s",
+            "cat": "DataFlow",
+            "name": "rhs_operation/user_00000/Nnt_parts/strided_slice/stack_1",
+            "pid": 11,
+            "tid": 0,
+            "ts": 1539686649641599,
+            "id": 10
+        },
+        {
+            "ph": "t",
+            "cat": "DataFlow",
+            "name": "rhs_operation/user_00000/Nnt_parts/strided_slice/stack_1",
+            "pid": 11,
+            "tid": 2,
+            "ts": 1539686649641818,
+            "id": 10
+        },
+        {
+            "ph": "X",
+            "cat": "Op",
+            "name": "Add",
+            "pid": 11,
+            "tid": 3,
+            "ts": 1539686649641788,
+            "dur": 79,
+            "args": {
+                "name": "rhs_operation/user_00000/Nnt_parts/add",
+                "op": "Add",
+                "input0": "rhs_operation/user_00000/Nnt_parts/add/x",
+                "input1": "rhs_operation/user_00000/Nnt_parts/strided_slice"
+            }
+        },
+        {
+            "ph": "s",
+            "cat": "DataFlow",
+            "name": "rhs_operation/user_00000/Nnt_parts/add/x",
+            "pid": 11,
+            "tid": 0,
+            "ts": 1539686649641582,
+            "id": 11
+        },
+        {
+            "ph": "t",
+            "cat": "DataFlow",
+            "name": "rhs_operation/user_00000/Nnt_parts/add/x",
+            "pid": 11,
+            "tid": 3,
+            "ts": 1539686649641788,
+            "id": 11
+        },
+        {
+            "ph": "s",
+            "cat": "DataFlow",
+            "name": "rhs_operation/user_00000/Nnt_parts/strided_slice",
+            "pid": 11,
+            "tid": 0,
+            "ts": 1539686649641781,
+            "id": 12
+        },
+        {
+            "ph": "t",
+            "cat": "DataFlow",
+            "name": "rhs_operation/user_00000/Nnt_parts/strided_slice",
+            "pid": 11,
+            "tid": 3,
+            "ts": 1539686649641788,
+            "id": 12
+        },
+        {
+            "ph": "X",
+            "cat": "Op",
+            "name": "Mul",
+            "pid": 11,
+            "tid": 0,
+            "ts": 1539686649641845,
+            "dur": 86,
+            "args": {
+                "name": "rhs_operation/user_00000/Nnt_parts/mul",
+                "op": "Mul",
+                "input0": "weights/rj_0/read",
+                "input1": "rhs_operation/user_00000/strided_slice"
+            }
+        },
+        {
+            "ph": "s",
+            "cat": "DataFlow",
+            "name": "rhs_operation/user_00000/strided_slice",
+            "pid": 11,
+            "tid": 1,
+            "ts": 1539686649641823,
+            "id": 13
+        },
+        {
+            "ph": "t",
+            "cat": "DataFlow",
+            "name": "rhs_operation/user_00000/strided_slice",
+            "pid": 11,
+            "tid": 0,
+            "ts": 1539686649641845,
+            "id": 13
+        },
+        {
+            "ph": "X",
+            "cat": "Op",
+            "name": "Add",
+            "pid": 11,
+            "tid": 1,
+            "ts": 1539686649641848,
+            "dur": 131,
+            "args": {
+                "name": "rhs_operation/user_00000/Nnt_parts/add_1",
+                "op": "Add",
+                "input0": "rhs_operation/user_00000/Nnt_parts/add/x",
+                "input1": "rhs_operation/user_00000/Nnt_parts/strided_slice_1"
+            }
+        },
+        {
+            "ph": "s",
+            "cat": "DataFlow",
+            "name": "rhs_operation/user_00000/Nnt_parts/add/x",
+            "pid": 11,
+            "tid": 0,
+            "ts": 1539686649641582,
+            "id": 14
+        },
+        {
+            "ph": "t",
+            "cat": "DataFlow",
+            "name": "rhs_operation/user_00000/Nnt_parts/add/x",
+            "pid": 11,
+            "tid": 1,
+            "ts": 1539686649641848,
+            "id": 14
+        },
+        {
+            "ph": "s",
+            "cat": "DataFlow",
+            "name": "rhs_operation/user_00000/Nnt_parts/strided_slice_1",
+            "pid": 11,
+            "tid": 2,
+            "ts": 1539686649641840,
+            "id": 15
+        },
+        {
+            "ph": "t",
+            "cat": "DataFlow",
+            "name": "rhs_operation/user_00000/Nnt_parts/strided_slice_1",
+            "pid": 11,
+            "tid": 1,
+            "ts": 1539686649641848,
+            "id": 15
+        },
+        {
+            "ph": "X",
+            "cat": "Op",
+            "name": "ConcatV2",
+            "pid": 11,
+            "tid": 4,
+            "ts": 1539686649641839,
+            "dur": 163,
+            "args": {
+                "name": "rhs_operation/user_00000/slow_Components/cpnt0/concat0",
+                "op": "ConcatV2",
+                "input0": "rhs_operation/user_00000/strided_slice",
+                "input1": "rhs_operation/user_00000/slow_Components/cpnt0/concat0/values_1",
+                "input2": "rhs_operation/user_00000/slow_Components/cpnt0/concat0/axis"
+            }
+        },
+        {
+            "ph": "s",
+            "cat": "DataFlow",
+            "name": "rhs_operation/user_00000/strided_slice",
+            "pid": 11,
+            "tid": 1,
+            "ts": 1539686649641823,
+            "id": 16
+        },
+        {
+            "ph": "t",
+            "cat": "DataFlow",
+            "name": "rhs_operation/user_00000/strided_slice",
+            "pid": 11,
+            "tid": 4,
+            "ts": 1539686649641839,
+            "id": 16
+        },
+        {
+            "ph": "s",
+            "cat": "DataFlow",
+            "name": "rhs_operation/user_00000/slow_Components/cpnt0/concat0/values_1",
+            "pid": 11,
+            "tid": 0,
+            "ts": 1539686649641837,
+            "id": 17
+        },
+        {
+            "ph": "t",
+            "cat": "DataFlow",
+            "name": "rhs_operation/user_00000/slow_Components/cpnt0/concat0/values_1",
+            "pid": 11,
+            "tid": 4,
+            "ts": 1539686649641839,
+            "id": 17
+        },
+        {
+            "ph": "s",
+            "cat": "DataFlow",
+            "name": "rhs_operation/user_00000/slow_Components/cpnt0/concat0/axis",
+            "pid": 11,
+            "tid": 0,
+            "ts": 1539686649641637,
+            "id": 18
+        },
+        {
+            "ph": "t",
+            "cat": "DataFlow",
+            "name": "rhs_operation/user_00000/slow_Components/cpnt0/concat0/axis",
+            "pid": 11,
+            "tid": 4,
+            "ts": 1539686649641839,
+            "id": 18
+        },
+        {
+            "ph": "X",
+            "cat": "Op",
+            "name": "Reshape",
+            "pid": 11,
+            "tid": 0,
+            "ts": 1539686649642007,
+            "dur": 9,
+            "args": {
+                "name": "rhs_operation/user_00000/slow_Components/cpnt0/Reshape",
+                "op": "Reshape",
+                "input0": "rhs_operation/user_00000/slow_Components/cpnt0/concat0",
+                "input1": "rhs_operation/user_00000/slow_Components/cpnt0/Reshape/shape"
+            }
+        },
+        {
+            "ph": "s",
+            "cat": "DataFlow",
+            "name": "rhs_operation/user_00000/slow_Components/cpnt0/concat0",
+            "pid": 11,
+            "tid": 4,
+            "ts": 1539686649642002,
+            "id": 19
+        },
+        {
+            "ph": "t",
+            "cat": "DataFlow",
+            "name": "rhs_operation/user_00000/slow_Components/cpnt0/concat0",
+            "pid": 11,
+            "tid": 0,
+            "ts": 1539686649642007,
+            "id": 19
+        },
+        {
+            "ph": "X",
+            "cat": "Op",
+            "name": "Mul",
+            "pid": 11,
+            "tid": 2,
+            "ts": 1539686649641935,
+            "dur": 85,
+            "args": {
+                "name": "rhs_operation/user_00000/Nnt_parts/mul_1",
+                "op": "Mul",
+                "input0": "weights/mj_0/read",
+                "input1": "rhs_operation/user_00000/strided_slice"
+            }
+        },
+        {
+            "ph": "s",
+            "cat": "DataFlow",
+            "name": "weights/mj_0/read",
+            "pid": 11,
+            "tid": 0,
+            "ts": 1539686649641725,
+            "id": 20
+        },
+        {
+            "ph": "t",
+            "cat": "DataFlow",
+            "name": "weights/mj_0/read",
+            "pid": 11,
+            "tid": 2,
+            "ts": 1539686649641935,
+            "id": 20
+        },
+        {
+            "ph": "s",
+            "cat": "DataFlow",
+            "name": "rhs_operation/user_00000/strided_slice",
+            "pid": 11,
+            "tid": 1,
+            "ts": 1539686649641823,
+            "id": 21
+        },
+        {
+            "ph": "t",
+            "cat": "DataFlow",
+            "name": "rhs_operation/user_00000/strided_slice",
+            "pid": 11,
+            "tid": 2,
+            "ts": 1539686649641935,
+            "id": 21
+        },
+        {
+            "ph": "X",
+            "cat": "Op",
+            "name": "MatMul",
+            "pid": 11,
+            "tid": 0,
+            "ts": 1539686649642018,
+            "dur": 56,
+            "args": {
+                "name": "rhs_operation/user_00000/slow_Components/cpnt0/MatMul",
+                "op": "MatMul",
+                "input0": "weights/wts_0/read",
+                "input1": "rhs_operation/user_00000/slow_Components/cpnt0/Reshape"
+            }
+        },
+        {
+            "ph": "X",
+            "cat": "Op",
+            "name": "StridedSlice",
+            "pid": 11,
+            "tid": 1,
+            "ts": 1539686649642024,
+            "dur": 68,
+            "args": {
+                "name": "rhs_operation/user_00000/slow_Components/cpnt1/strided_slice_2",
+                "op": "StridedSlice",
+                "input0": "rhs_operation/user_00000/strided_slice",
+                "input1": "rhs_operation/user_00000/Nnt_parts/strided_slice/stack_1",
+                "input2": "rhs_operation/user_00000/slow_Components/cpnt1/strided_slice_2/stack_1",
+                "input3": "rhs_operation/user_00000/Nnt_parts/strided_slice/stack_1"
+            }
+        },
+        {
+            "ph": "s",
+            "cat": "DataFlow",
+            "name": "rhs_operation/user_00000/Nnt_parts/strided_slice/stack_1",
+            "pid": 11,
+            "tid": 0,
+            "ts": 1539686649641599,
+            "id": 22
+        },
+        {
+            "ph": "t",
+            "cat": "DataFlow",
+            "name": "rhs_operation/user_00000/Nnt_parts/strided_slice/stack_1",
+            "pid": 11,
+            "tid": 1,
+            "ts": 1539686649642024,
+            "id": 22
+        },
+        {
+            "ph": "s",
+            "cat": "DataFlow",
+            "name": "rhs_operation/user_00000/slow_Components/cpnt1/strided_slice_2/stack_1",
+            "pid": 11,
+            "tid": 0,
+            "ts": 1539686649641631,
+            "id": 23
+        },
+        {
+            "ph": "t",
+            "cat": "DataFlow",
+            "name": "rhs_operation/user_00000/slow_Components/cpnt1/strided_slice_2/stack_1",
+            "pid": 11,
+            "tid": 1,
+            "ts": 1539686649642024,
+            "id": 23
+        },
+        {
+            "ph": "s",
+            "cat": "DataFlow",
+            "name": "rhs_operation/user_00000/Nnt_parts/strided_slice/stack_1",
+            "pid": 11,
+            "tid": 0,
+            "ts": 1539686649641599,
+            "id": 24
+        },
+        {
+            "ph": "t",
+            "cat": "DataFlow",
+            "name": "rhs_operation/user_00000/Nnt_parts/strided_slice/stack_1",
+            "pid": 11,
+            "tid": 1,
+            "ts": 1539686649642024,
+            "id": 24
+        },
+        {
+            "ph": "X",
+            "cat": "Op",
+            "name": "Add",
+            "pid": 11,
+            "tid": 0,
+            "ts": 1539686649642078,
+            "dur": 41,
+            "args": {
+                "name": "rhs_operation/user_00000/slow_Components/cpnt0/add",
+                "op": "Add",
+                "input0": "rhs_operation/user_00000/slow_Components/cpnt0/MatMul",
+                "input1": "weights/bias_0/read"
+            }
+        },
+        {
+            "ph": "X",
+            "cat": "Op",
+            "name": "StridedSlice",
+            "pid": 11,
+            "tid": 1,
+            "ts": 1539686649642098,
+            "dur": 37,
+            "args": {
+                "name": "rhs_operation/user_00000/slow_Components/cpnt0/strided_slice_2",
+                "op": "StridedSlice",
+                "input0": "rhs_operation/user_00000/strided_slice",
+                "input1": "rhs_operation/user_00000/Nnt_parts/strided_slice/stack",
+                "input2": "rhs_operation/user_00000/Nnt_parts/strided_slice/stack_1",
+                "input3": "rhs_operation/user_00000/Nnt_parts/strided_slice/stack_1"
+            }
+        },
+        {
+            "ph": "s",
+            "cat": "DataFlow",
+            "name": "rhs_operation/user_00000/Nnt_parts/strided_slice/stack",
+            "pid": 11,
+            "tid": 0,
+            "ts": 1539686649641591,
+            "id": 25
+        },
+        {
+            "ph": "t",
+            "cat": "DataFlow",
+            "name": "rhs_operation/user_00000/Nnt_parts/strided_slice/stack",
+            "pid": 11,
+            "tid": 1,
+            "ts": 1539686649642098,
+            "id": 25
+        },
+        {
+            "ph": "s",
+            "cat": "DataFlow",
+            "name": "rhs_operation/user_00000/Nnt_parts/strided_slice/stack_1",
+            "pid": 11,
+            "tid": 0,
+            "ts": 1539686649641599,
+            "id": 26
+        },
+        {
+            "ph": "t",
+            "cat": "DataFlow",
+            "name": "rhs_operation/user_00000/Nnt_parts/strided_slice/stack_1",
+            "pid": 11,
+            "tid": 1,
+            "ts": 1539686649642098,
+            "id": 26
+        },
+        {
+            "ph": "s",
+            "cat": "DataFlow",
+            "name": "rhs_operation/user_00000/Nnt_parts/strided_slice/stack_1",
+            "pid": 11,
+            "tid": 0,
+            "ts": 1539686649641599,
+            "id": 27
+        },
+        {
+            "ph": "t",
+            "cat": "DataFlow",
+            "name": "rhs_operation/user_00000/Nnt_parts/strided_slice/stack_1",
+            "pid": 11,
+            "tid": 1,
+            "ts": 1539686649642098,
+            "id": 27
+        },
+        {
+            "ph": "X",
+            "cat": "Op",
+            "name": "Tanh",
+            "pid": 11,
+            "tid": 0,
+            "ts": 1539686649642123,
+            "dur": 30,
+            "args": {
+                "name": "rhs_operation/user_00000/slow_Components/cpnt0/Tanh",
+                "op": "Tanh",
+                "input0": "rhs_operation/user_00000/slow_Components/cpnt0/add"
+            }
+        },
+        {
+            "ph": "X",
+            "cat": "Op",
+            "name": "StridedSlice",
+            "pid": 11,
+            "tid": 1,
+            "ts": 1539686649642139,
+            "dur": 33,
+            "args": {
+                "name": "rhs_operation/user_00000/slow_Components/cpnt2/strided_slice_2",
+                "op": "StridedSlice",
+                "input0": "rhs_operation/user_00000/strided_slice",
+                "input1": "rhs_operation/user_00000/slow_Components/cpnt1/strided_slice_2/stack_1",
+                "input2": "rhs_operation/user_00000/strided_slice/stack_1",
+                "input3": "rhs_operation/user_00000/Nnt_parts/strided_slice/stack_1"
+            }
+        },
+        {
+            "ph": "s",
+            "cat": "DataFlow",
+            "name": "rhs_operation/user_00000/slow_Components/cpnt1/strided_slice_2/stack_1",
+            "pid": 11,
+            "tid": 0,
+            "ts": 1539686649641631,
+            "id": 28
+        },
+        {
+            "ph": "t",
+            "cat": "DataFlow",
+            "name": "rhs_operation/user_00000/slow_Components/cpnt1/strided_slice_2/stack_1",
+            "pid": 11,
+            "tid": 1,
+            "ts": 1539686649642139,
+            "id": 28
+        },
+        {
+            "ph": "s",
+            "cat": "DataFlow",
+            "name": "rhs_operation/user_00000/strided_slice/stack_1",
+            "pid": 11,
+            "tid": 0,
+            "ts": 1539686649641695,
+            "id": 29
+        },
+        {
+            "ph": "t",
+            "cat": "DataFlow",
+            "name": "rhs_operation/user_00000/strided_slice/stack_1",
+            "pid": 11,
+            "tid": 1,
+            "ts": 1539686649642139,
+            "id": 29
+        },
+        {
+            "ph": "s",
+            "cat": "DataFlow",
+            "name": "rhs_operation/user_00000/Nnt_parts/strided_slice/stack_1",
+            "pid": 11,
+            "tid": 0,
+            "ts": 1539686649641599,
+            "id": 30
+        },
+        {
+            "ph": "t",
+            "cat": "DataFlow",
+            "name": "rhs_operation/user_00000/Nnt_parts/strided_slice/stack_1",
+            "pid": 11,
+            "tid": 1,
+            "ts": 1539686649642139,
+            "id": 30
+        },
+        {
+            "ph": "X",
+            "cat": "Op",
+            "name": "MatMul",
+            "pid": 11,
+            "tid": 0,
+            "ts": 1539686649642156,
+            "dur": 43,
+            "args": {
+                "name": "rhs_operation/user_00000/slow_Components/cpnt0/MatMul_1",
+                "op": "MatMul",
+                "input0": "weights/wts_1/read",
+                "input1": "rhs_operation/user_00000/slow_Components/cpnt0/Tanh"
+            }
+        },
+        {
+            "ph": "X",
+            "cat": "Op",
+            "name": "RealDiv",
+            "pid": 11,
+            "tid": 1,
+            "ts": 1539686649642176,
+            "dur": 38,
+            "args": {
+                "name": "rhs_operation/user_00000/Nnt_parts/truediv",
+                "op": "RealDiv",
+                "input0": "rhs_operation/user_00000/Nnt_parts/mul",
+                "input1": "rhs_operation/user_00000/Nnt_parts/add"
+            }
+        },
+        {
+            "ph": "s",
+            "cat": "DataFlow",
+            "name": "rhs_operation/user_00000/Nnt_parts/mul",
+            "pid": 11,
+            "tid": 0,
+            "ts": 1539686649641931,
+            "id": 31
+        },
+        {
+            "ph": "t",
+            "cat": "DataFlow",
+            "name": "rhs_operation/user_00000/Nnt_parts/mul",
+            "pid": 11,
+            "tid": 1,
+            "ts": 1539686649642176,
+            "id": 31
+        },
+        {
+            "ph": "s",
+            "cat": "DataFlow",
+            "name": "rhs_operation/user_00000/Nnt_parts/add",
+            "pid": 11,
+            "tid": 3,
+            "ts": 1539686649641867,
+            "id": 32
+        },
+        {
+            "ph": "t",
+            "cat": "DataFlow",
+            "name": "rhs_operation/user_00000/Nnt_parts/add",
+            "pid": 11,
+            "tid": 1,
+            "ts": 1539686649642176,
+            "id": 32
+        },
+        {
+            "ph": "X",
+            "cat": "Op",
+            "name": "Add",
+            "pid": 11,
+            "tid": 0,
+            "ts": 1539686649642202,
+            "dur": 41,
+            "args": {
+                "name": "rhs_operation/user_00000/slow_Components/cpnt0/add_1",
+                "op": "Add",
+                "input0": "rhs_operation/user_00000/slow_Components/cpnt0/MatMul_1",
+                "input1": "weights/bias_1/read"
+            }
+        },
+        {
+            "ph": "X",
+            "cat": "Op",
+            "name": "RealDiv",
+            "pid": 11,
+            "tid": 1,
+            "ts": 1539686649642217,
+            "dur": 48,
+            "args": {
+                "name": "rhs_operation/user_00000/Nnt_parts/truediv_1",
+                "op": "RealDiv",
+                "input0": "rhs_operation/user_00000/Nnt_parts/mul_1",
+                "input1": "rhs_operation/user_00000/Nnt_parts/add_1"
+            }
+        },
+        {
+            "ph": "s",
+            "cat": "DataFlow",
+            "name": "rhs_operation/user_00000/Nnt_parts/mul_1",
+            "pid": 11,
+            "tid": 2,
+            "ts": 1539686649642020,
+            "id": 33
+        },
+        {
+            "ph": "t",
+            "cat": "DataFlow",
+            "name": "rhs_operation/user_00000/Nnt_parts/mul_1",
+            "pid": 11,
+            "tid": 1,
+            "ts": 1539686649642217,
+            "id": 33
+        },
+        {
+            "ph": "X",
+            "cat": "Op",
+            "name": "Tanh",
+            "pid": 11,
+            "tid": 0,
+            "ts": 1539686649642246,
+            "dur": 31,
+            "args": {
+                "name": "rhs_operation/user_00000/slow_Components/cpnt0/Tanh_1",
+                "op": "Tanh",
+                "input0": "rhs_operation/user_00000/slow_Components/cpnt0/add_1"
+            }
+        },
+        {
+            "ph": "X",
+            "cat": "Op",
+            "name": "RealDiv",
+            "pid": 11,
+            "tid": 1,
+            "ts": 1539686649642268,
+            "dur": 33,
+            "args": {
+                "name": "rhs_operation/user_00000/slow_Components/cpnt1/truediv",
+                "op": "RealDiv",
+                "input0": "rhs_operation/user_00000/slow_Components/cpnt1/strided_slice_2",
+                "input1": "weights/tau_1/read"
+            }
+        },
+        {
+            "ph": "s",
+            "cat": "DataFlow",
+            "name": "weights/tau_1/read",
+            "pid": 11,
+            "tid": 0,
+            "ts": 1539686649641734,
+            "id": 34
+        },
+        {
+            "ph": "t",
+            "cat": "DataFlow",
+            "name": "weights/tau_1/read",
+            "pid": 11,
+            "tid": 1,
+            "ts": 1539686649642268,
+            "id": 34
+        },
+        {
+            "ph": "X",
+            "cat": "Op",
+            "name": "MatMul",
+            "pid": 11,
+            "tid": 0,
+            "ts": 1539686649642279,
+            "dur": 40,
+            "args": {
+                "name": "rhs_operation/user_00000/slow_Components/cpnt0/MatMul_2",
+                "op": "MatMul",
+                "input0": "weights/wts_2/read",
+                "input1": "rhs_operation/user_00000/slow_Components/cpnt0/Tanh_1"
+            }
+        },
+        {
+            "ph": "X",
+            "cat": "Op",
+            "name": "RealDiv",
+            "pid": 11,
+            "tid": 1,
+            "ts": 1539686649642304,
+            "dur": 29,
+            "args": {
+                "name": "rhs_operation/user_00000/slow_Components/cpnt0/truediv",
+                "op": "RealDiv",
+                "input0": "rhs_operation/user_00000/slow_Components/cpnt0/strided_slice_2",
+                "input1": "weights/tau_0/read"
+            }
+        },
+        {
+            "ph": "s",
+            "cat": "DataFlow",
+            "name": "weights/tau_0/read",
+            "pid": 11,
+            "tid": 0,
+            "ts": 1539686649641750,
+            "id": 35
+        },
+        {
+            "ph": "t",
+            "cat": "DataFlow",
+            "name": "weights/tau_0/read",
+            "pid": 11,
+            "tid": 1,
+            "ts": 1539686649642304,
+            "id": 35
+        },
+        {
+            "ph": "X",
+            "cat": "Op",
+            "name": "Add",
+            "pid": 11,
+            "tid": 0,
+            "ts": 1539686649642322,
+            "dur": 40,
+            "args": {
+                "name": "rhs_operation/user_00000/slow_Components/cpnt0/add_2",
+                "op": "Add",
+                "input0": "rhs_operation/user_00000/slow_Components/cpnt0/MatMul_2",
+                "input1": "weights/bias_2/read"
+            }
+        },
+        {
+            "ph": "s",
+            "cat": "DataFlow",
+            "name": "weights/bias_2/read",
+            "pid": 11,
+            "tid": 1,
+            "ts": 1539686649641838,
+            "id": 36
+        },
+        {
+            "ph": "t",
+            "cat": "DataFlow",
+            "name": "weights/bias_2/read",
+            "pid": 11,
+            "tid": 0,
+            "ts": 1539686649642322,
+            "id": 36
+        },
+        {
+            "ph": "X",
+            "cat": "Op",
+            "name": "RealDiv",
+            "pid": 11,
+            "tid": 1,
+            "ts": 1539686649642336,
+            "dur": 47,
+            "args": {
+                "name": "rhs_operation/user_00000/slow_Components/cpnt2/truediv",
+                "op": "RealDiv",
+                "input0": "rhs_operation/user_00000/slow_Components/cpnt2/strided_slice_2",
+                "input1": "weights/tau_2/read"
+            }
+        },
+        {
+            "ph": "s",
+            "cat": "DataFlow",
+            "name": "weights/tau_2/read",
+            "pid": 11,
+            "tid": 0,
+            "ts": 1539686649641720,
+            "id": 37
+        },
+        {
+            "ph": "t",
+            "cat": "DataFlow",
+            "name": "weights/tau_2/read",
+            "pid": 11,
+            "tid": 1,
+            "ts": 1539686649642336,
+            "id": 37
+        },
+        {
+            "ph": "X",
+            "cat": "Op",
+            "name": "Tanh",
+            "pid": 11,
+            "tid": 0,
+            "ts": 1539686649642365,
+            "dur": 30,
+            "args": {
+                "name": "rhs_operation/user_00000/slow_Components/cpnt0/Tanh_2",
+                "op": "Tanh",
+                "input0": "rhs_operation/user_00000/slow_Components/cpnt0/add_2"
+            }
+        },
+        {
+            "ph": "X",
+            "cat": "Op",
+            "name": "StridedSlice",
+            "pid": 11,
+            "tid": 0,
+            "ts": 1539686649642397,
+            "dur": 9,
+            "args": {
+                "name": "rhs_operation/user_00000/slow_Components/cpnt0/strided_slice",
+                "op": "StridedSlice",
+                "input0": "rhs_operation/user_00000/slow_Components/cpnt0/Tanh_2",
+                "input1": "rhs_operation/user_00000/Nnt_parts/strided_slice/stack",
+                "input2": "rhs_operation/user_00000/Nnt_parts/strided_slice/stack_1",
+                "input3": "rhs_operation/user_00000/Nnt_parts/strided_slice/stack_1"
+            }
+        },
+        {
+            "ph": "X",
+            "cat": "Op",
+            "name": "StridedSlice",
+            "pid": 11,
+            "tid": 0,
+            "ts": 1539686649642408,
+            "dur": 5,
+            "args": {
+                "name": "rhs_operation/user_00000/slow_Components/cpnt0/strided_slice_1",
+                "op": "StridedSlice",
+                "input0": "rhs_operation/user_00000/slow_Components/cpnt0/strided_slice",
+                "input1": "rhs_operation/user_00000/Nnt_parts/strided_slice/stack",
+                "input2": "rhs_operation/user_00000/Nnt_parts/strided_slice/stack_1",
+                "input3": "rhs_operation/user_00000/Nnt_parts/strided_slice/stack_1"
+            }
+        },
+        {
+            "ph": "X",
+            "cat": "Op",
+            "name": "Sub",
+            "pid": 11,
+            "tid": 1,
+            "ts": 1539686649642387,
+            "dur": 34,
+            "args": {
+                "name": "rhs_operation/user_00000/Nnt_parts/sub",
+                "op": "Sub",
+                "input0": "weights/fj_0/read",
+                "input1": "rhs_operation/user_00000/Nnt_parts/truediv"
+            }
+        },
+        {
+            "ph": "s",
+            "cat": "DataFlow",
+            "name": "weights/fj_0/read",
+            "pid": 11,
+            "tid": 0,
+            "ts": 1539686649641710,
+            "id": 38
+        },
+        {
+            "ph": "t",
+            "cat": "DataFlow",
+            "name": "weights/fj_0/read",
+            "pid": 11,
+            "tid": 1,
+            "ts": 1539686649642387,
+            "id": 38
+        },
+        {
+            "ph": "X",
+            "cat": "Op",
+            "name": "Sub",
+            "pid": 11,
+            "tid": 0,
+            "ts": 1539686649642415,
+            "dur": 36,
+            "args": {
+                "name": "rhs_operation/user_00000/slow_Components/cpnt1/sub",
+                "op": "Sub",
+                "input0": "rhs_operation/user_00000/slow_Components/cpnt0/strided_slice_1",
+                "input1": "rhs_operation/user_00000/slow_Components/cpnt1/truediv"
+            }
+        },
+        {
+            "ph": "s",
+            "cat": "DataFlow",
+            "name": "rhs_operation/user_00000/slow_Components/cpnt1/truediv",
+            "pid": 11,
+            "tid": 1,
+            "ts": 1539686649642301,
+            "id": 39
+        },
+        {
+            "ph": "t",
+            "cat": "DataFlow",
+            "name": "rhs_operation/user_00000/slow_Components/cpnt1/truediv",
+            "pid": 11,
+            "tid": 0,
+            "ts": 1539686649642415,
+            "id": 39
+        },
+        {
+            "ph": "X",
+            "cat": "Op",
+            "name": "Sub",
+            "pid": 11,
+            "tid": 1,
+            "ts": 1539686649642425,
+            "dur": 49,
+            "args": {
+                "name": "rhs_operation/user_00000/Nnt_parts/sub_1",
+                "op": "Sub",
+                "input0": "rhs_operation/user_00000/Nnt_parts/sub",
+                "input1": "rhs_operation/user_00000/Nnt_parts/truediv_1"
+            }
+        },
+        {
+            "ph": "X",
+            "cat": "Op",
+            "name": "Sub",
+            "pid": 11,
+            "tid": 0,
+            "ts": 1539686649642473,
+            "dur": 34,
+            "args": {
+                "name": "rhs_operation/user_00000/slow_Components/cpnt0/sub",
+                "op": "Sub",
+                "input0": "rhs_operation/user_00000/slow_Components/cpnt0/strided_slice_1",
+                "input1": "rhs_operation/user_00000/slow_Components/cpnt0/truediv"
+            }
+        },
+        {
+            "ph": "s",
+            "cat": "DataFlow",
+            "name": "rhs_operation/user_00000/slow_Components/cpnt0/truediv",
+            "pid": 11,
+            "tid": 1,
+            "ts": 1539686649642333,
+            "id": 40
+        },
+        {
+            "ph": "t",
+            "cat": "DataFlow",
+            "name": "rhs_operation/user_00000/slow_Components/cpnt0/truediv",
+            "pid": 11,
+            "tid": 0,
+            "ts": 1539686649642473,
+            "id": 40
+        },
+        {
+            "ph": "X",
+            "cat": "Op",
+            "name": "Sub",
+            "pid": 11,
+            "tid": 0,
+            "ts": 1539686649642510,
+            "dur": 29,
+            "args": {
+                "name": "rhs_operation/user_00000/slow_Components/cpnt2/sub",
+                "op": "Sub",
+                "input0": "rhs_operation/user_00000/slow_Components/cpnt0/strided_slice_1",
+                "input1": "rhs_operation/user_00000/slow_Components/cpnt2/truediv"
+            }
+        },
+        {
+            "ph": "s",
+            "cat": "DataFlow",
+            "name": "rhs_operation/user_00000/slow_Components/cpnt2/truediv",
+            "pid": 11,
+            "tid": 1,
+            "ts": 1539686649642383,
+            "id": 41
+        },
+        {
+            "ph": "t",
+            "cat": "DataFlow",
+            "name": "rhs_operation/user_00000/slow_Components/cpnt2/truediv",
+            "pid": 11,
+            "tid": 0,
+            "ts": 1539686649642510,
+            "id": 41
+        },
+        {
+            "ph": "X",
+            "cat": "Op",
+            "name": "Pack",
+            "pid": 11,
+            "tid": 0,
+            "ts": 1539686649642542,
+            "dur": 75,
+            "args": {
+                "name": "rhs_operation/user_00000/slow_Components/concat/values_1",
+                "op": "Pack",
+                "input0": "rhs_operation/user_00000/slow_Components/cpnt0/sub",
+                "input1": "rhs_operation/user_00000/slow_Components/cpnt1/sub",
+                "input2": "rhs_operation/user_00000/slow_Components/cpnt2/sub"
+            }
+        },
+        {
+            "ph": "X",
+            "cat": "Op",
+            "name": "ConcatV2",
+            "pid": 11,
+            "tid": 0,
+            "ts": 1539686649642620,
+            "dur": 52,
+            "args": {
+                "name": "rhs_operation/user_00000/slow_Components/concat",
+                "op": "ConcatV2",
+                "input0": "rhs_operation/user_00000/Nnt_parts/sub_1",
+                "input1": "rhs_operation/user_00000/slow_Components/concat/values_1",
+                "input2": "rhs_operation/user_00000/slow_Components/cpnt0/concat0/axis"
+            }
+        },
+        {
+            "ph": "s",
+            "cat": "DataFlow",
+            "name": "rhs_operation/user_00000/Nnt_parts/sub_1",
+            "pid": 11,
+            "tid": 1,
+            "ts": 1539686649642474,
+            "id": 42
+        },
+        {
+            "ph": "t",
+            "cat": "DataFlow",
+            "name": "rhs_operation/user_00000/Nnt_parts/sub_1",
+            "pid": 11,
+            "tid": 0,
+            "ts": 1539686649642620,
+            "id": 42
+        },
+        {
+            "ph": "X",
+            "cat": "Op",
+            "name": "Identity",
+            "pid": 11,
+            "tid": 0,
+            "ts": 1539686649642676,
+            "dur": 5,
+            "args": {
+                "name": "rhs_operation/concat",
+                "op": "Identity",
+                "input0": "rhs_operation/user_00000/slow_Components/concat"
+            }
+        },
+        {
+            "ph": "X",
+            "cat": "Op",
+            "name": "NoOp",
+            "pid": 13,
+            "tid": 0,
+            "ts": 1539686649641417,
+            "dur": 15,
+            "args": {
+                "name": "_SOURCE",
+                "op": "NoOp"
+            }
+        },
+        {
+            "ph": "X",
+            "cat": "Op",
+            "name": "_Arg",
+            "pid": 13,
+            "tid": 0,
+            "ts": 1539686649641464,
+            "dur": 14,
+            "args": {
+                "name": "_arg_rhs_operation/y_tf_0_4",
+                "op": "_Arg"
+            }
+        },
+        {
+            "ph": "X",
+            "cat": "Op",
+            "name": "_Arg",
+            "pid": 13,
+            "tid": 0,
+            "ts": 1539686649641486,
+            "dur": 5,
+            "args": {
+                "name": "_arg_rhs_operation/stress_val_0_3",
+                "op": "_Arg"
+            }
+        },
+        {
+            "ph": "X",
+            "cat": "Op",
+            "name": "_Arg",
+            "pid": 13,
+            "tid": 0,
+            "ts": 1539686649641498,
+            "dur": 5,
+            "args": {
+                "name": "_arg_rhs_operation/Bj_0_1",
+                "op": "_Arg"
+            }
+        },
+        {
+            "ph": "X",
+            "cat": "Op",
+            "name": "_Arg",
+            "pid": 13,
+            "tid": 0,
+            "ts": 1539686649641509,
+            "dur": 5,
+            "args": {
+                "name": "_arg_rhs_operation/Aj_0_0",
+                "op": "_Arg"
+            }
+        },
+        {
+            "ph": "X",
+            "cat": "Op",
+            "name": "_Retval",
+            "pid": 13,
+            "tid": 0,
+            "ts": 1539686649642786,
+            "dur": 9,
+            "args": {
+                "name": "_retval_rhs_operation/concat_0_0",
+                "op": "_Retval",
+                "input0": "rhs_operation/concat/_27"
+            }
+        },
+        {
+            "ph": "s",
+            "cat": "DataFlow",
+            "name": "rhs_operation/concat",
+            "pid": 11,
+            "tid": 0,
+            "ts": 1539686649642681,
+            "id": 43
+        },
+        {
+            "ph": "t",
+            "cat": "DataFlow",
+            "name": "rhs_operation/concat",
+            "pid": 13,
+            "tid": 0,
+            "ts": 1539686649642786,
+            "id": 43
+        }
+    ]
+}

@@ -153,13 +153,15 @@ def solveODE(logger, N, numSim, plotData=False):
         rj.append(np.array([6    ,3   ,8  ]))
         mj.append(np.array([10 ,17 ,2  ]))
         stress_t.append(t.copy())
-        stress_v.append( signal.square(2 * np.pi * t / 20.0)*50)
+        stress_v.append( signal.square(2 * np.pi * t / 20.0) * 50)
 
 
     model = mOde.multipleODE(Npat, Nnt, Nl, Atimesj, Btimesj, fj, rj, mj, stress_t, stress_v)
 
     allTimes    = []
     allTimesJac = []
+    allResults  = []
+    np.random.seed(1234)
 
     for i in range(numSim):
 
@@ -173,21 +175,32 @@ def solveODE(logger, N, numSim, plotData=False):
         NNactD = [ dTanh,   dTanh,   dTanh ] # Differentiation of tanh
         Taus   = [1, 4, 12]
 
-        args   = (NNwts, NNb, NNact, Taus)
+        args   = (NNwts, NNb, NNact, NNactD, Taus)
 
-        tNew   = np.linspace(5, 75, 50)
-        startTime = time()
+        tNew          = np.linspace(5, 75, 50)
+        startTime     = time()
         result, specs =  model.solveY( y0, tNew, args, full_output=True )
-        tDelta = time() - startTime
+        tDelta        = time() - startTime
         allTimes.append( tDelta )
 
+        '''
         with open('../results/allData.csv', 'a') as f:
             f.write('[No Jacobian][{}], # steps {:6d}, fn eval {:6d}, jac eval {:6d}, {}\n '.format(
             now, specs['nst'][-1], specs['nfe'][-1], specs['nje'][-1], tDelta))
+        '''
 
         print('[No Jacobian] # steps {:6d}, fn eval {:6d}, jac eval {:6d} --> '.format(
             specs['nst'][-1], specs['nfe'][-1], specs['nje'][-1]), end = '')
         print(tDelta)
+
+        allResults.append(result)
+
+        for key in specs.keys():
+            if isinstance(specs[key], np.ndarray):
+                specs[key] = specs[key].tolist()
+
+        with open('../results/odeint_Numpyspecs.json', 'w') as f:
+            json.dump(specs, f)
 
         # startTime = time()
         # result_1, specs_1 =  model.solveY( y0, tNew, args, useJac=True, full_output=True )
@@ -213,14 +226,19 @@ def solveODE(logger, N, numSim, plotData=False):
         #     plt.close('all')
 
 
+    allResults = np.concatenate(allResults, axis=0)
+    np.save('../results/allresults_dy_numpy.npy', allResults)
+
     allTimes = np.array(allTimes)
     # allTimesJac = np.array(allTimesJac)
     print('[No Jac] Mean = {}, Std  = {}, Nusers = {}, perUser = {}'.format( allTimes.mean(), allTimes.std(), Npat, allTimes.mean()/Npat ))
     # print('[   Jac] Mean = {}, Std  = {}'.format( allTimesJac.mean(), allTimesJac.std() ))
     
+    '''
     with open('../results/allData.csv', 'a') as f:
         f.write('[Summary][No Jac], Mean = {}, Std  = {}, Nusers = {}, perUser = {}\n'.format( 
             allTimes.mean(), allTimes.std(), Npat, allTimes.mean()/Npat ))
+    '''
 
     return allTimes.mean()/Npat
 
@@ -239,13 +257,17 @@ def main(logger):
     '''
 
 
-    numList = [1, 5, 10, 20, 50, 100]
-    results = [solveODE(N, 10, plotData=False) for N in numList]
+    # numList = [1, 5, 10, 20, 50, 100]
+    numList = [100]
+    # results = [solveODE(N, 10, plotData=False) for N in numList]
+    results = [solveODE(N, 1, plotData=False) for N in numList]
     now = dt.now().strftime('%Y-%m-%d--%H-%M-%S')
 
+    '''
     with open('../results/summary-{}.csv'.format(now), 'w') as f:
         for n, l in zip(numList, results):
             f.write('{},{}\n'.format( n, l ))
+    '''
 
         
     # compareJac()

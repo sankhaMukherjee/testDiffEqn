@@ -5,7 +5,7 @@ from scipy.interpolate import interp1d
 from scipy.integrate import odeint
 import numpy as np
 
-from numba import jit
+# from numba import jit
 
 config = json.load(open('../config/config.json'))
 logBase = config['logging']['logBase'] + '.lib.multipleODE.multipleODE'
@@ -175,7 +175,8 @@ class multipleODE:
 
         return result
 
-    def dy(self, y, t, NNwts, NNb, NNact, NNactD, Taus):
+    @lD.log(logBase + '.dy')
+    def dy(logger, self, y, t, NNwts, NNb, NNact, NNactD, Taus):
         '''[summary]
         
 
@@ -244,31 +245,37 @@ class multipleODE:
                         ))
                     res = res.reshape((-1, 1))
 
-                    for w, b, a in zip(NNwts, NNb, NNact):
-                        res = np.matmul(w, res) #+ b
+                    for index, (w, b, a) in enumerate(zip(NNwts, NNb, NNact)):
+                        res = np.matmul(w, res) + b
                         res = a(res)
 
                     result[user*NperUser+self.Nnt+j] = res[0][0] - y[user*NperUser+self.Nnt+j]/Taus[j]
 
         except Exception as e:
-            print('Unable to calculate the dy properly: {}'.format(e))
+            
+            logger.error('Unable to calculate the dy properly: {}'.format(str(e)))
 
         return np.array(result)
 
-    def solveY(self, y0, t, args, useJac=False, full_output=False):
+    @lD.log(logBase + '.solveY')
+    def solveY(logger, self, y0, t, args, useJac=False, full_output=False):
 
-        jac = None
-        if useJac:
-            jac = self.jac
+        try:
+            jac = None
+            if useJac:
+                jac = self.jac
 
-        result_dict = {}
-        if full_output:
-            y_t, result_dict = odeint(self.dy, y0, t, args=args, Dfun=jac, full_output=True)
-        else:
-            y_t = odeint(self.dy, y0, t, args=args, Dfun=jac, full_output=False)
+            result_dict = {}
+            if full_output:
+                y_t, result_dict = odeint(self.dy, y0, t, args=args, Dfun=jac, full_output=True)
+            else:
+                y_t = odeint(self.dy, y0, t, args=args, Dfun=jac, full_output=False)
 
-        # if useJac:
-        #     print('')
+            # if useJac:
+            #     print('')
 
-        return y_t, result_dict
+            return y_t, result_dict
 
+        except Exception as e:
+
+            logger.error('Unable to solve Y \n{}'.format(str(e)))

@@ -29,5 +29,13 @@
         "execute"    : true ,
         "description": "",
         "owner"      : ""
+    },
+
+    {
+        "moduleName" : "check_Y",
+        "path"       : "modules/testing/check_Y.py",
+        "execute"    : false ,
+        "description": "",
+        "owner"      : ""
     }
 ]

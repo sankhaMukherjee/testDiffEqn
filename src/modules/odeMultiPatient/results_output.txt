@@ -1,0 +1,43 @@
+numpy: 2.59e-04
+tf   : 7.830381e-03
+
+
+../bin/checkTime.sh
+                           function name      count   total    average
+                                  [main]          1    1.83   1.83e+00 [▥▥▥▥▥▥▥▥▥▥▥▥▥▥▥▥▥▥▥▥▥▥▥▥      ]
+                                    [dy]       4706    1.22   2.59e-04 [                              ]
+                                [solveY]          1    1.82   1.82e+00 [▥▥▥▥▥▥▥▥▥▥▥▥▥▥▥▥▥▥▥▥▥▥▥       ]
+                         [importModules]          1    2.27   2.27e+00 [▥▥▥▥▥▥▥▥▥▥▥▥▥▥▥▥▥▥▥▥▥▥▥▥▥▥▥▥▥▥]
+                              [solveODE]          1    1.82   1.82e+00 [▥▥▥▥▥▥▥▥▥▥▥▥▥▥▥▥▥▥▥▥▥▥▥▥      ]
+
+
+../bin/checkTime.sh
+                           function name      count   total    average
+                                  [main]          3  115.56   3.85e+01 [▥▥▥▥▥▥▥▥▥                     ]
+                                    [dy]      19406  109.90   5.66e-03 [                              ]
+                           [interpolate]          5    0.34   6.88e-02 [                              ]
+                              [__init__]          1    0.00   2.43e-05 [                              ]
+                                [solveY]          2  115.54   5.78e+01 [▥▥▥▥▥▥▥▥▥▥▥▥▥▥                ]
+                         [importModules]          1  116.83   1.17e+02 [▥▥▥▥▥▥▥▥▥▥▥▥▥▥▥▥▥▥▥▥▥▥▥▥▥▥▥▥▥▥]
+                            [tf_opsFlow]          1    0.83   8.28e-01 [                              ]
+                              [solveODE]          2  115.56   5.78e+01 [▥▥▥▥▥▥▥▥▥▥▥▥▥▥                ]
+
+
+
+
+
+../bin/checkTime.sh
+                           function name      count   total    average
+                                  [main]          1  480.94   4.81e+02 [▥▥▥▥▥▥▥▥▥▥▥▥▥▥▥▥▥▥▥▥▥▥▥▥▥▥▥▥▥ ]
+                                    [dy]      25496  477.30   1.87e-02 [                              ]
+                                [solveY]          1  480.93   4.81e+02 [▥▥▥▥▥▥▥▥▥▥▥▥▥▥▥▥▥▥▥▥▥▥▥▥▥▥▥▥▥ ]
+                         [importModules]          1  481.38   4.81e+02 [▥▥▥▥▥▥▥▥▥▥▥▥▥▥▥▥▥▥▥▥▥▥▥▥▥▥▥▥▥▥]
+                              [solveODE]          1  480.94   4.81e+02 [▥▥▥▥▥▥▥▥▥▥▥▥▥▥▥▥▥▥▥▥▥▥▥▥▥▥▥▥▥ ]
+
+
+
+../bin/checkTime.sh
+                           function name      count   total    average
+                                    [dy]       1728 1067.75   6.18e-01 [                              ]
+                           [interpolate]        500   37.31   7.46e-02 [                              ]
+                            [tf_opsFlow]          1   57.07   5.71e+01 [▥▥▥▥▥▥▥▥▥▥▥▥▥▥▥▥▥▥▥▥▥▥▥▥▥▥▥▥▥▥]

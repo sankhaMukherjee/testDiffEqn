@@ -9,6 +9,7 @@ import matplotlib.pyplot as plt
 from scipy import signal
 import tensorflow as tf
 
+from tqdm import tqdm
 
 config = json.load(open('../config/config.json'))
 logBase = config['logging']['logBase'] + '.modules.odeMultiPatient.odeMultiPatient_tf'
@@ -158,19 +159,22 @@ def solveODE(logger, N, numSim, plotData=False):
         stress_t.append( tspan.copy() )
         stress_v.append( signal.square(2 * np.pi * tspan / 20.0) * 50)
 
-
-    model = mOde.multipleODE(Npat, Nnt, Nl, tspan, Atimesj, Btimesj, fj, rj, mj, stress_t, stress_v)
-
+    model       = mOde.multipleODE(Npat=Npat, Nnt=Nnt, Nl=Nl, tspan=tspan, Atimesj=Atimesj, Btimesj=Btimesj, 
+                                   fj=fj, rj=rj, mj=mj, stress_t=stress_t, stress_v=stress_v, 
+                                   layers=[12, 3, 1], activations=[ 'tanh', 'tanh', 'tanh' ])
     allTimes    = []
     allTimesJac = []
+    allResults  = []
+    pbar        = tqdm(range(numSim))
+    np.random.seed(1234)
 
-    for i in range(numSim):
+    for i in pbar:
 
         y0     = np.hstack([np.array([1,1,1,2,2,2]) for j in range(Npat)])
 
-        NNwts  = [ np.random.random(size=(4, 12)), 
-                   np.random.random(size=(12, 3)), 
-                   np.random.random(size=(3, 1))
+        NNwts  = [ np.random.random(size=(12, 4)), 
+                   np.random.random(size=(3, 12)), 
+                   np.random.random(size=(1, 3))
                    ]
         NNb    = [ 0, 1, -1 ]
         NNact  = [ 'tanh', 'tanh', 'tanh' ]
@@ -178,19 +182,31 @@ def solveODE(logger, N, numSim, plotData=False):
 
         args   = (NNwts, NNb, NNact, Taus)
 
-        tNew      = np.linspace(5, 75, 50)
-        startTime = time()
+        tNew          = np.linspace(5, 75, 50)
+        startTime     = time()
         result, specs =  model.solveY( y0, tNew, args, full_output=True )
-        tDelta = time() - startTime
+        tDelta        = time() - startTime
         allTimes.append( tDelta )
+        pbar.set_description('time spent: {:.3f}s'.format(tDelta))
 
+        '''
         with open('../results/allData.csv', 'a') as f:
             f.write('[No Jacobian][{}], # steps {:6d}, fn eval {:6d}, jac eval {:6d}, {}\n '.format(
             now, specs['nst'][-1], specs['nfe'][-1], specs['nje'][-1], tDelta))
+        '''
 
         print('[No Jacobian] # steps {:6d}, fn eval {:6d}, jac eval {:6d} --> '.format(
             specs['nst'][-1], specs['nfe'][-1], specs['nje'][-1]), end = '')
         print(tDelta)
+
+        allResults.append(result)
+
+        for key in specs.keys():
+            if isinstance(specs[key], np.ndarray):
+                specs[key] = specs[key].tolist()
+
+        with open('../results/odeint_TFspecs.json', 'w') as f:
+            json.dump(specs, f)
 
         # startTime = time()
         # result_1, specs_1 =  model.solveY( y0, tNew, args, useJac=True, full_output=True )
@@ -215,15 +231,19 @@ def solveODE(logger, N, numSim, plotData=False):
         #         plt.savefig('../results/img/simpleODE-{}_{:05}.png'.format(now, i))
         #     plt.close('all')
 
+    allResults = np.concatenate(allResults, axis=0)
+    np.save('../results/allresults_dy_tensorflow.npy', allResults)
 
     allTimes = np.array(allTimes)
     # allTimesJac = np.array(allTimesJac)
     print('[No Jac] Mean = {}, Std  = {}, Nusers = {}, perUser = {}'.format( allTimes.mean(), allTimes.std(), Npat, allTimes.mean()/Npat ))
     # print('[   Jac] Mean = {}, Std  = {}'.format( allTimesJac.mean(), allTimesJac.std() ))
     
+    '''    
     with open('../results/allData.csv', 'a') as f:
         f.write('[Summary][No Jac], Mean = {}, Std  = {}, Nusers = {}, perUser = {}\n'.format( 
             allTimes.mean(), allTimes.std(), Npat, allTimes.mean()/Npat ))
+    '''
 
     return allTimes.mean()/Npat
 
@@ -242,16 +262,22 @@ def main(logger):
     '''
 
 
-    numList = [1, 5, 10, 20, 50, 100]
-    results = [solveODE(N, 10, plotData=False) for N in numList]
-    now = dt.now().strftime('%Y-%m-%d--%H-%M-%S')
+    # numList = [1, 5, 10, 20, 50, 100]
+    numList = [1, 2]
+    # results = [solveODE(N, 10, plotData=False) for N in numList]
 
+    for N in numList:
+        print('N:', N)
+        results = solveODE(N, 1, plotData=False)
+        now = dt.now().strftime('%Y-%m-%d--%H-%M-%S')
+
+    '''
     with open('../results/summary-{}.csv'.format(now), 'w') as f:
         for n, l in zip(numList, results):
             f.write('{},{}\n'.format( n, l ))
+    '''
 
         
     # compareJac()
 
     return
-
