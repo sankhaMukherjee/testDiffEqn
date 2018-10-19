@@ -21,6 +21,7 @@ config/db.json
 # All the logs are to be ignored
 # Remember to keep the decorators
 src/logs/*.log
+src/tensorlog/
 
 # Dont save results or data (might be a lot of stuff)
 results/*

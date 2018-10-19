@@ -5,10 +5,44 @@
         "execute"    : false ,
         "description": "",
         "owner"      : ""
-    },{
+    },
+
+    {
         "moduleName" : "odeSimple",
         "path"       : "modules/odeSimple/odeSimple.py",
+        "execute"    : false ,
+        "description": "",
+        "owner"      : ""
+    },
+
+    {
+        "moduleName" : "odeMultiPatient",
+        "path"       : "modules/odeMultiPatient/odeMultiPatient.py",
         "execute"    : true ,
+        "description": "",
+        "owner"      : ""
+    },
+
+    {
+        "moduleName" : "odeMultiPatient",
+        "path"       : "modules/odeMultiPatient/odeMultiPatient_old.py",
+        "execute"    : false ,
+        "description": "",
+        "owner"      : ""
+    },
+
+    {
+        "moduleName" : "odeMultiPatient_tf",
+        "path"       : "modules/odeMultiPatient/odeMultiPatient_tf.py",
+        "execute"    : false ,
+        "description": "",
+        "owner"      : ""
+    },
+
+    {
+        "moduleName" : "check_Y",
+        "path"       : "modules/testing/check_Y.py",
+        "execute"    : false ,
         "description": "",
         "owner"      : ""
     }
