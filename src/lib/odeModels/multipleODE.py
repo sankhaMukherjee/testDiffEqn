@@ -11,7 +11,7 @@ config = json.load(open('../config/config.json'))
 logBase = config['logging']['logBase'] + '.lib.multipleODE.multipleODE'
 
 
-class multipleODE:
+class multipleODE_old:
     '''[summary]
     
     [description]
@@ -273,6 +273,125 @@ class multipleODE:
 
             # if useJac:
             #     print('')
+
+            return y_t, result_dict
+
+        except Exception as e:
+
+            logger.error('Unable to solve Y \n{}'.format(str(e)))
+
+class multipleODE:
+    '''[summary]
+    
+    [description]
+    '''
+
+
+    @lD.log(logBase + '.__init__')
+    def __init__(logger, self, Npat, Nnt, Nl, Atimesj, Btimesj, fj, rj, mj, stress_v, tspan):
+        '''[summary]
+        
+        [description]
+        
+        Parameters
+        ----------
+        logger : {[type]}
+            [description]
+        self : {[type]}
+            [description]
+        '''
+
+        self.Npat         = Npat    # --> 1 number 
+        self.Nnt          = Nnt     # --> 1 number
+        self.Nl           = Nl      # --> 1 number
+        self.fj           = fj      # --> Npat arrays
+        self.rj           = rj      # --> Npat arrays
+        self.mj           = mj      # --> Npat arrays
+
+        self.AjInterp     = interp1d(tspan, Atimesj,  bounds_error=False, fill_value=(Atimesj[:,:,0],  Atimesj[:,:,-1]))
+        self.BjInterp     = interp1d(tspan, Btimesj,  bounds_error=False, fill_value=(Btimesj[:,:,0],  Btimesj[:,:,-1]))
+        self.stressInterp = interp1d(tspan, stress_v, bounds_error=False, fill_value=(stress_v[:,:,0], stress_v[:,:,-1]))
+
+        return
+
+    @lD.log(logBase + '.dy')
+    def dy(logger, self, y, t, NNwts, NNb, NNact, NNactD, Taus):
+        '''[summary]
+        
+
+        Current Assumptions:
+
+        1. At the moment, we assume that a single NN will suffice for the 
+           entire model. This will not always be the case. However, we shall
+           calculate this at every iteration of the latent space to compute
+           the cost having a number of neural network layers
+
+        2. There is only 1 vector for stress that will represent the stressors.
+           This can easily be changed to a list of stressors. Medications can
+           also be inserted in the same manner later. 
+           We might also be interested in smoothing eevrything later.
+
+
+        
+        Parameters
+        ----------
+        y : {[type]}
+            [description]
+        t : {[type]}
+            [description]
+        NNwts : {[type]}
+            [description]
+        NNb : {[type]}
+            [description]
+        NNact : {[type]}
+            [description]
+        Taus : {[type]}
+            [description]
+        
+        Returns
+        -------
+        [type]
+            [description]
+        '''
+
+        try:
+
+            y           = np.array(y).reshape(self.Npat, -1)
+            Nnt_val     = y[:, :self.Nnt]
+            nn_inputs   = np.concatenate([Nnt_val, self.stressInterp(t)], axis=1)
+
+            for index, (w, b, a) in enumerate(zip(NNwts, NNb, NNact)):
+                if index == 0:
+                    nn_res = np.dot(nn_inputs, w) + b
+                else:
+                    nn_res = np.dot(nn_res, w) + b
+                nn_res = a(nn_res)
+
+            nn_res    = nn_res - y[:, self.Nnt:] / Taus
+            meds_res  = self.fj - self.rj * Nnt_val / (1 + self.AjInterp(t)) - self.mj * Nnt_val / (1 + self.BjInterp(t))
+
+            result    = np.concatenate([nn_res, meds_res], axis=1)
+            result    = result.flatten()
+
+        except Exception as e:
+            
+            logger.error('Unable to calculate the dy properly: {}'.format(str(e)))
+
+        return result
+
+    @lD.log(logBase + '.solveY')
+    def solveY(logger, self, y0, t, args, useJac=False, full_output=False):
+
+        try:
+            jac = None
+            if useJac:
+                jac = self.jac
+
+            result_dict = {}
+            if full_output:
+                y_t, result_dict = odeint(self.dy, y0, t, args=args, Dfun=jac, full_output=True, mxstep=50000)
+            else:
+                y_t = odeint(self.dy, y0, t, args=args, Dfun=jac, full_output=False)
 
             return y_t, result_dict
 

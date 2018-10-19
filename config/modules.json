@@ -18,6 +18,14 @@
     {
         "moduleName" : "odeMultiPatient",
         "path"       : "modules/odeMultiPatient/odeMultiPatient.py",
+        "execute"    : true ,
+        "description": "",
+        "owner"      : ""
+    },
+
+    {
+        "moduleName" : "odeMultiPatient",
+        "path"       : "modules/odeMultiPatient/odeMultiPatient_old.py",
         "execute"    : false ,
         "description": "",
         "owner"      : ""
@@ -26,7 +34,7 @@
     {
         "moduleName" : "odeMultiPatient_tf",
         "path"       : "modules/odeMultiPatient/odeMultiPatient_tf.py",
-        "execute"    : true ,
+        "execute"    : false ,
         "description": "",
         "owner"      : ""
     },

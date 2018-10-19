@@ -14,92 +14,8 @@ from tqdm import tqdm
 config = json.load(open('../config/config.json'))
 logBase = config['logging']['logBase'] + '.modules.odeMultiPatient.odeMultiPatient_tf'
 
-def dTanh(x):
-    return 1-(np.tanh(x))**2
-
-def one(x):
-    return x
-
-def sqr(x):
-    return x**2
-
-def Dsqr(x):
-    return x*2
-
-# def compareJac():
-
-#     np.set_printoptions(precision=1)
-
-#     t = np.linspace(0, 100, 101)
-
-#     # ---------------------------------------------------------
-#     # These can be specific to a person or to the simulation
-#     # as a whole ... 
-#     # ---------------------------------------------------------
-#     Nnt      = 3
-#     Nl       = 3
-#     Atimesj  = [(  5, 15, 3    ),
-#                 ( 35, 50, 12.5 ),
-#                 ( 75, 80, 7.6  ),]
-#     Btimesj  = [(  5, 15, 3    ),
-#                 ( 35, 50, 12.5 ),
-#                 ( 75, 80, 7.6  ),]
-#     fj       = [2   ,2   ,2    ]
-#     rj       = [0.5 ,0.5 ,0.5  ]
-#     mj       = [0.5 ,0.5 ,0.5  ]
-#     stress_t = t.copy()
-#     stress_v = np.random.rand(len(t))
-#     stress_v = np.zeros(len(t))
-
-
-#     model = sOde.simpleODE(Nnt, Nl, Atimesj, Btimesj, fj, rj, mj, stress_t, stress_v)
-#     y0    = np.array([1.0,1,1,2,2,2])
-#     NNwts = [ np.random.rand(12,  4), 
-#               np.random.rand( 3, 12),
-#               np.random.rand( 1,  3) ]
-#     NNb    = [ 0, 1, -1 ]
-
-#     NNact  = [ np.tanh, np.tanh, np.tanh ]
-#     NNactD = [ dTanh,   dTanh,   dTanh ] # Differentiation of tanh
-
-#     # NNact  = [ one, one, sqr ]
-#     # NNactD = [ one, one, Dsqr ] # Differentiation of tanh
-
-
-#     Taus   = [1, 4, 12]
-
-#     i  = 0
-#     delY0 = 1e-10
-
-
-#     dy  = model.dy(y0, 0, NNwts, NNb, NNact, NNactD, Taus)
-#     jac = model.jac(y0, 0, NNwts, NNb, NNact, NNactD, Taus)
-
-#     jacFD = []
-#     for i in range(len(y0)):
-#         y1    = y0.copy()
-#         y1[i] = y1[i] + delY0
-
-#         dy1 = model.dy(y1, 0, NNwts, NNb, NNact, NNactD, Taus)
-
-#         jacFD.append((dy1 - dy)/delY0)
-
-#     jacFD = np.array(jacFD)
-#     print('------------[Finite difference]------------')
-#     print(jacFD)
-#     print('------------[Calculated]------------')
-#     print(jac)
-#     print('------------[Ratio]------------')
-#     print(jac/jacFD)
-
-
-#     return
-
-def r():
-    return np.random.rand() + 0.5
-
-@lD.log(logBase + '.solveODE')
-def solveODE(logger, N, numSim, plotData=False):
+@lD.log(logBase + '.solveODE_old')
+def solveODE_old(logger, N, numSim, plotData=False):
     '''print a line
     
     This function simply prints a single line
@@ -247,6 +163,147 @@ def solveODE(logger, N, numSim, plotData=False):
 
     return allTimes.mean()/Npat
 
+@lD.log(logBase + '.solveODE_new')
+def solveODE_new(logger, N, numSim, plotData=False):
+
+    print('-'*30)
+    print('We are in odeMultiPatient: {}'.format(N))
+    print('-'*30)
+    now      = dt.now().strftime('%Y-%m-%d--%H-%M-%S')
+    Npat     = N
+    tspan    = np.linspace(0, 100, 101)
+
+    Nnt      = 3
+    Nl       = 3
+    
+    Atimesj  = []
+    Btimesj  = []
+    fj       = []
+    rj       = []
+    mj       = []
+    stress_v = []
+    stress_t = []
+
+    for i in range(Npat):
+        
+        tmp_doseA, tmp_doseB   = np.zeros(shape=tspan.shape), np.zeros(shape=tspan.shape)
+        
+        for trange, dose in [ ([  5, 15],    3 ),
+                              ([ 35, 50],   35 ),
+                              ([ 50, 60],    3 ),
+                              ([ 60, 75],  300 ),
+                              ([ 75, 80],  7.6 ) ]:
+            twindow            = range(trange[0], trange[1] + 1)
+            tmp_doseA[twindow] = dose
+
+        for trange, dose in [ ([  5, 15], 70   ),
+                              ([ 35, 50], 12.5 ),
+                              ([ 75, 80], 7.6  ) ]:
+            twindow            = range(trange[0], trange[1] + 1)
+            tmp_doseB[twindow] = dose   
+
+        Atimesj.append(tmp_doseA)
+        Btimesj.append(tmp_doseB)
+        fj.append(np.array([12   ,7   ,15 ]))
+        rj.append(np.array([6    ,3   ,8  ]))
+        mj.append(np.array([10   ,17  ,2  ]))
+        stress_t.append( tspan.copy() )
+        stress_v.append( signal.square(2 * np.pi * tspan / 20.0) * 50 )
+
+    Atimesj     = np.array(Atimesj).reshape(Npat, -1)
+    Btimesj     = np.array(Btimesj).reshape(Npat, -1)
+    fj          = np.array(fj).reshape(Npat, -1)
+    rj          = np.array(rj).reshape(Npat, -1)
+    mj          = np.array(mj).reshape(Npat, -1)
+
+    model       = mOde.multipleODE_new(Npat=Npat, Nnt=Nnt, Nl=Nl, tspan=tspan, Atimesj=Atimesj, Btimesj=Btimesj, 
+                                       fj=fj, rj=rj, mj=mj, stress_t=stress_t, stress_v=stress_v, 
+                                       layers=[12, 3, 1], activations=[ 'tanh', 'tanh', 'tanh' ])
+    allTimes    = []
+    allTimesJac = []
+    allResults  = []
+    pbar        = tqdm(range(numSim))
+    np.random.seed(1234)
+
+    for i in pbar:
+
+        y0     = np.hstack([np.array([1,1,1]) for j in range(Npat)])
+
+        NNwts  = [ np.random.random(size=(12, 4)), 
+                   np.random.random(size=(3, 12)), 
+                   np.random.random(size=(1, 3))
+                   ]
+        NNb    = [ 0, 1, -1 ]
+        NNact  = [ 'tanh', 'tanh', 'tanh' ]
+        Taus   = [ 1, 4, 12 ]
+
+        args   = (NNwts, NNb, NNact, Taus)
+
+        tNew          = np.linspace(5, 75, 50)
+        startTime     = time()
+        result, specs =  model.solveY( y0, tNew, args, full_output=True )
+        tDelta        = time() - startTime
+        allTimes.append( tDelta )
+        pbar.set_description('time spent: {:.3f}s'.format(tDelta))
+
+        '''
+        with open('../results/allData.csv', 'a') as f:
+            f.write('[No Jacobian][{}], # steps {:6d}, fn eval {:6d}, jac eval {:6d}, {}\n '.format(
+            now, specs['nst'][-1], specs['nfe'][-1], specs['nje'][-1], tDelta))
+        '''
+
+        print('[No Jacobian] # steps {:6d}, fn eval {:6d}, jac eval {:6d} --> '.format(
+            specs['nst'][-1], specs['nfe'][-1], specs['nje'][-1]), end = '')
+        print(tDelta)
+
+        allResults.append(result)
+
+        for key in specs.keys():
+            if isinstance(specs[key], np.ndarray):
+                specs[key] = specs[key].tolist()
+
+        with open('../results/odeint_TFspecs.json', 'w') as f:
+            json.dump(specs, f)
+
+        # startTime = time()
+        # result_1, specs_1 =  model.solveY( y0, tNew, args, useJac=True, full_output=True )
+        # tDelta = time() - startTime
+
+        # if i > 0:
+        #     allTimesJac.append( tDelta )
+
+        # print('[   Jacobian] # steps {:6d}, fn eval {:6d}, jac eval {:6d} --> '.format(
+        #     specs_1['nst'][-1], specs_1['nfe'][-1], specs_1['nje'][-1]), end = '')
+        # print(tDelta)
+
+        # error = np.mean(np.abs(result - result_1))
+        # print('error = {}'.format(error))
+
+        # if plotData:
+        #     now = dt.now().strftime('%Y-%m-%d--%H-%M-%S')
+        #     for i in range(result.shape[1]):
+        #         plt.figure()
+        #         plt.plot(tNew, result[:, i])
+        #         plt.plot(tNew, result_1[:, i])
+        #         plt.savefig('../results/img/simpleODE-{}_{:05}.png'.format(now, i))
+        #     plt.close('all')
+
+    allResults = np.concatenate(allResults, axis=0)
+    np.save('../results/allresults_dy_tensorflow.npy', allResults)
+
+    allTimes = np.array(allTimes)
+    # allTimesJac = np.array(allTimesJac)
+    print('[No Jac] Mean = {}, Std  = {}, Nusers = {}, perUser = {}'.format( allTimes.mean(), allTimes.std(), Npat, allTimes.mean()/Npat ))
+    # print('[   Jac] Mean = {}, Std  = {}'.format( allTimesJac.mean(), allTimesJac.std() ))
+    
+    '''    
+    with open('../results/allData.csv', 'a') as f:
+        f.write('[Summary][No Jac], Mean = {}, Std  = {}, Nusers = {}, perUser = {}\n'.format( 
+            allTimes.mean(), allTimes.std(), Npat, allTimes.mean()/Npat ))
+    '''
+
+    return allTimes.mean()/Npat
+
 @lD.log(logBase + '.main')
 def main(logger):
     '''main function for module1
@@ -263,13 +320,13 @@ def main(logger):
 
 
     # numList = [1, 5, 10, 20, 50, 100]
-    numList = [1, 2]
+    numList = [1]
     # results = [solveODE(N, 10, plotData=False) for N in numList]
 
     for N in numList:
         print('N:', N)
-        results = solveODE(N, 1, plotData=False)
-        now = dt.now().strftime('%Y-%m-%d--%H-%M-%S')
+        results = solveODE_new(N, 1, plotData=False)
+        now     = dt.now().strftime('%Y-%m-%d--%H-%M-%S')
 
     '''
     with open('../results/summary-{}.csv'.format(now), 'w') as f:
